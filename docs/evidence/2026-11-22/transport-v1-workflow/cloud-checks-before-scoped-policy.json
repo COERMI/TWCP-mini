@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-22T09:44:33.483Z",
+  "version": "transport-v1-workflow-3",
+  "checks": [
+    {
+      "check": "trusted-wechat-claim",
+      "passed": true
+    },
+    {
+      "check": "client-database-direct-read-denied",
+      "passed": true
+    },
+    {
+      "check": "base-order-enforced",
+      "passed": true
+    },
+    {
+      "check": "signed-upload-cannot-change-object-key",
+      "passed": false
+    }
+  ],
+  "identity": "Trusted WeChat developer-tools context; no injected OPENID or business-auth bypass",
+  "scope": "Synthetic test data; does not substitute for physical camera, offline phone or second-user validation",
+  "diagnosticNote": "This intermediate upload check awaited wx.uploadFile incorrectly (UploadTask instead of callback result); it is not evidence that generic platform metadata grants arbitrary-key writes. Callback handling was fixed and final checks supersede this run."
+}

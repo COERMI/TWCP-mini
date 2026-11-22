@@ -1,0 +1,97 @@
+{
+  "at": "2026-11-22T09:59:51.651Z",
+  "version": "transport-v1-workflow-3",
+  "checks": [
+    {
+      "check": "trusted-wechat-claim",
+      "passed": true
+    },
+    {
+      "check": "client-database-direct-read-denied",
+      "passed": true
+    },
+    {
+      "check": "base-order-enforced",
+      "passed": true
+    },
+    {
+      "check": "signed-upload-cannot-change-object-key",
+      "passed": true
+    },
+    {
+      "check": "three-base-types-archived",
+      "passed": true
+    },
+    {
+      "check": "ready-processing-retry-idempotent",
+      "passed": true
+    },
+    {
+      "check": "original-download-exact-bytes",
+      "passed": true
+    },
+    {
+      "check": "waybill-derivative-is-real-footer-png",
+      "passed": true
+    },
+    {
+      "check": "waybill-content-pixels-preserved",
+      "passed": true
+    },
+    {
+      "check": "client-direct-archive-read-denied",
+      "passed": true
+    },
+    {
+      "check": "client-direct-archive-overwrite-denied",
+      "passed": true
+    },
+    {
+      "check": "last-submitted-base-protected",
+      "passed": true
+    },
+    {
+      "check": "replacement-allows-removal",
+      "passed": true
+    },
+    {
+      "check": "active-door-resumes-same-group",
+      "passed": true
+    },
+    {
+      "check": "door-close-requires-open",
+      "passed": true
+    },
+    {
+      "check": "door-save-does-not-complete-trip",
+      "passed": true
+    },
+    {
+      "check": "failed-render-retains-original",
+      "passed": true
+    },
+    {
+      "check": "pending-photo-blocks-completion",
+      "passed": true
+    },
+    {
+      "check": "explicit-completion-succeeds",
+      "passed": true
+    },
+    {
+      "check": "two-independent-door-groups-with-three-opening-photos",
+      "passed": true
+    },
+    {
+      "check": "correction-restores-transporting",
+      "passed": true
+    },
+    {
+      "check": "phone-page-displays-cloud-state",
+      "passed": true
+    }
+  ],
+  "identity": "Trusted WeChat developer-tools context; no injected OPENID or business-auth bypass",
+  "uploadTransport": "Node fetch using identical signed POST policy; phone upload domain not verified by this run",
+  "scope": "Synthetic test data; does not substitute for physical camera, offline phone or second-user validation"
+}

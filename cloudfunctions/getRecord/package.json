@@ -1,0 +1,9 @@
+{
+  "name": "getRecord",
+  "version": "1.0.0",
+  "description": "获取运输档案详情与事件列表（司机端，需校验 access_token）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

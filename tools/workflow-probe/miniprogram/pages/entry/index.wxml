@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="tag">整趟流程联调 · 测试运输</view>
+  <view class="title">{{claimed ? '已确认本趟运输' : '先确认本趟车牌'}}</view>
+  <view wx:if="{{record}}" class="card">
+    <view class="plate">{{record.plate_number}}</view>
+    <view class="detail">{{record.ship_date}}</view>
+    <view class="detail">{{record.description}}</view>
+    <view wx:if="{{claimed}}" class="number">档案：{{record.record_no}}</view>
+  </view>
+  <view wx:if="{{!claimed && record && !mismatch}}">
+    <button class="primary" bindtap="confirm" disabled="{{busy}}" loading="{{busy}}">车牌正确，确认本趟运输</button>
+    <button class="wrong" bindtap="mismatch" disabled="{{busy}}">车牌不符，请重新发入口</button>
+  </view>
+  <view wx:if="{{mismatch}}" class="alert">
+    <view class="alert-title">车牌不对，先不要拍照</view>
+    <view>请联系发入口的工作人员，让对方核对车牌后重新发送本趟入口。</view>
+    <button bindtap="back">返回核对车牌</button>
+  </view>
+  <view wx:if="{{claimed}}">
+    <view class="success">{{message}}</view>
+    <button class="primary" bindtap="enter" disabled="{{busy}}">进入本趟运输，开始拍照</button>
+    <view wx:if="{{readVerified}}" class="success">本趟读取验证通过</view>
+    <view class="hint">退出后重新扫码，仍应显示本趟运输，无需再次确认车牌。</view>
+  </view>
+  <view wx:if="{{error}}" class="alert">{{error}}</view>
+  <button wx:if="{{!claimed}}" bindtap="load" disabled="{{busy}}">{{busy ? '正在读取…' : '刷新本趟入口'}}</button>
+  <view class="hint">仅用于测试。运输前三项按顺序拍齐，之后每次开门、关门都拍照，全部卸货后再完成运输。</view>
+</view>

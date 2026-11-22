@@ -1,0 +1,66 @@
+[
+  {
+    "collection": "transport_v1_records",
+    "indexes": [
+      {
+        "name": "_id_",
+        "keys": [
+          "_id"
+        ]
+      },
+      {
+        "name": "_openid_1",
+        "keys": [
+          "_openid"
+        ]
+      },
+      {
+        "name": "created_then_id_desc",
+        "keys": [
+          "created_at",
+          "_id"
+        ]
+      },
+      {
+        "name": "phase_created_then_id_desc",
+        "keys": [
+          "phase",
+          "created_at",
+          "_id"
+        ]
+      }
+    ]
+  },
+  {
+    "collection": "transport_records",
+    "indexes": [
+      {
+        "name": "_id_",
+        "keys": [
+          "_id"
+        ]
+      },
+      {
+        "name": "_openid_1",
+        "keys": [
+          "_openid"
+        ]
+      },
+      {
+        "name": "created_then_id_desc",
+        "keys": [
+          "created_at",
+          "_id"
+        ]
+      },
+      {
+        "name": "phase_created_then_id_desc",
+        "keys": [
+          "status",
+          "created_at",
+          "_id"
+        ]
+      }
+    ]
+  }
+]

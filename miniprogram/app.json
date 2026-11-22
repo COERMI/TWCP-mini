@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/record/record"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1F6FEB",
+    "navigationBarTitleText": "运输照片采集",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F6F8",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于记录运输照片的拍摄位置，便于责任追溯"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"]
+}

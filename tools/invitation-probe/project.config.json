@@ -1,0 +1,8 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "appid": "wx2c993513e03bb60a",
+  "projectname": "运输影像-本趟入口验证",
+  "libVersion": "3.4.0",
+  "setting": { "es6": true, "enhance": true, "minified": true, "urlCheck": true }
+}

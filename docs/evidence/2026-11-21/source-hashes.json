@@ -1,0 +1,142 @@
+[
+  {
+    "function": "createRecord",
+    "file": "index.js",
+    "local_sha256": "FF7C01D79FE05EFEE184B2B4D7105122D5EC44ADD67D53508B88947B1220A740",
+    "cloud_sha256": "FF7C01D79FE05EFEE184B2B4D7105122D5EC44ADD67D53508B88947B1220A740",
+    "equal": true
+  },
+  {
+    "function": "createRecord",
+    "file": "package.json",
+    "local_sha256": "654DDB430ED1CBE531578CD18B4DAB8FA75AED18B7A4737A4ADF91A94103FFA0",
+    "cloud_sha256": "654DDB430ED1CBE531578CD18B4DAB8FA75AED18B7A4737A4ADF91A94103FFA0",
+    "equal": true
+  },
+  {
+    "function": "getRecord",
+    "file": "index.js",
+    "local_sha256": "EE1B25FCB1AACD3E94E4DEBBA96856BF1AF1A5CAC35D3DA834AC9D7A70FB3209",
+    "cloud_sha256": "EE1B25FCB1AACD3E94E4DEBBA96856BF1AF1A5CAC35D3DA834AC9D7A70FB3209",
+    "equal": true
+  },
+  {
+    "function": "getRecord",
+    "file": "package.json",
+    "local_sha256": "5C2F5A8A21C40FD50EA0AD517DC4111F82F840E483B22C9DB259B35E2B01F359",
+    "cloud_sha256": "5C2F5A8A21C40FD50EA0AD517DC4111F82F840E483B22C9DB259B35E2B01F359",
+    "equal": true
+  },
+  {
+    "function": "submitRecord",
+    "file": "index.js",
+    "local_sha256": "26B8C79EFB13FB2AC152D5FB69B6AD4DA0E7463BAC6F54124C22ABE27275783D",
+    "cloud_sha256": "26B8C79EFB13FB2AC152D5FB69B6AD4DA0E7463BAC6F54124C22ABE27275783D",
+    "equal": true
+  },
+  {
+    "function": "submitRecord",
+    "file": "package.json",
+    "local_sha256": "5B8EB1B7019EA3D1A8F796D69607C22E5193C5F6B5436BF693D2EC7F60C50931",
+    "cloud_sha256": "5B8EB1B7019EA3D1A8F796D69607C22E5193C5F6B5436BF693D2EC7F60C50931",
+    "equal": true
+  },
+  {
+    "function": "uploadPhoto",
+    "file": "index.js",
+    "local_sha256": "2BB28807FFA7145565E0F46750E2F8F198AFE3B2845AD789B5E0CE9322D28128",
+    "cloud_sha256": "5DA5A4D388AF3A021AB7E21E1E65E55D17552B98A6DC13DE2A28043C5760972B",
+    "equal": false
+  },
+  {
+    "function": "uploadPhoto",
+    "file": "package.json",
+    "local_sha256": "CE8C6AC3958D48C58CA135C0DBA779A18602F1BBE0C778D308BD37D316A89575",
+    "cloud_sha256": "CE8C6AC3958D48C58CA135C0DBA779A18602F1BBE0C778D308BD37D316A89575",
+    "equal": true
+  },
+  {
+    "function": "uploadPhoto",
+    "file": "fonts\\wqy-microhei.ttc",
+    "local_sha256": "E4BCA8DF123CE01B104780F576EA1A58B9A5FF1662A91124B6D3180CB6C88212",
+    "cloud_sha256": "E4BCA8DF123CE01B104780F576EA1A58B9A5FF1662A91124B6D3180CB6C88212",
+    "equal": true
+  },
+  {
+    "function": "adminLogin",
+    "file": "index.js",
+    "local_sha256": "1553C152124E035D73D0010D11B6688F14DC48AABD026F6B4388D79993FB8101",
+    "cloud_sha256": "1553C152124E035D73D0010D11B6688F14DC48AABD026F6B4388D79993FB8101",
+    "equal": true
+  },
+  {
+    "function": "adminLogin",
+    "file": "package.json",
+    "local_sha256": "AF2D7AEB685832E40C2AB31005CE4005F40CC060C5132C7E564B2407EB05DA55",
+    "cloud_sha256": "AF2D7AEB685832E40C2AB31005CE4005F40CC060C5132C7E564B2407EB05DA55",
+    "equal": true
+  },
+  {
+    "function": "adminLogin",
+    "file": "auth.js",
+    "local_sha256": "ED426374014564F4F80092283B292ACF754A376744DFB3D46F822F6732C2B55C",
+    "cloud_sha256": "ED426374014564F4F80092283B292ACF754A376744DFB3D46F822F6732C2B55C",
+    "equal": true
+  },
+  {
+    "function": "listRecords",
+    "file": "index.js",
+    "local_sha256": "8C8C08F57EEA498F9F80FADE66F1517E778DBA23C3F4FDA631D8C1EBE9666EE7",
+    "cloud_sha256": "8C8C08F57EEA498F9F80FADE66F1517E778DBA23C3F4FDA631D8C1EBE9666EE7",
+    "equal": true
+  },
+  {
+    "function": "listRecords",
+    "file": "package.json",
+    "local_sha256": "EB4B57B44A16003F739D41C185394CAAC34F94B83BA82F4B026029B42E803FC4",
+    "cloud_sha256": "EB4B57B44A16003F739D41C185394CAAC34F94B83BA82F4B026029B42E803FC4",
+    "equal": true
+  },
+  {
+    "function": "listRecords",
+    "file": "auth.js",
+    "local_sha256": "22035EB5EBA27A2B944E48DC36D1C5E6EAF63DEE55D42FC8EB36315D9622C13B",
+    "cloud_sha256": "22035EB5EBA27A2B944E48DC36D1C5E6EAF63DEE55D42FC8EB36315D9622C13B",
+    "equal": true
+  },
+  {
+    "function": "getRecordAdmin",
+    "file": "index.js",
+    "local_sha256": "D04F0EEB5069591D4312F121F33E93181070F0AB6AC9E31CD4825E14BB2E7A5E",
+    "cloud_sha256": "D04F0EEB5069591D4312F121F33E93181070F0AB6AC9E31CD4825E14BB2E7A5E",
+    "equal": true
+  },
+  {
+    "function": "getRecordAdmin",
+    "file": "package.json",
+    "local_sha256": "C39B37045D024D57D003FCF166D1B7FE23EAE54B7F83CCFF76E557EC19CBBAA1",
+    "cloud_sha256": "C39B37045D024D57D003FCF166D1B7FE23EAE54B7F83CCFF76E557EC19CBBAA1",
+    "equal": true
+  },
+  {
+    "function": "getRecordAdmin",
+    "file": "auth.js",
+    "local_sha256": "22035EB5EBA27A2B944E48DC36D1C5E6EAF63DEE55D42FC8EB36315D9622C13B",
+    "cloud_sha256": "22035EB5EBA27A2B944E48DC36D1C5E6EAF63DEE55D42FC8EB36315D9622C13B",
+    "equal": true
+  },
+  {
+    "function": "getEnvInfo",
+    "file": "index.js",
+    "local_sha256": null,
+    "cloud_sha256": "12C99CC072CCF3D47FD5A430AA9A392D3D8B54AEF29187307EEE4B3C953C7FD4",
+    "equal": false
+  },
+  {
+    "function": "getEnvInfo",
+    "file": "package.json",
+    "local_sha256": null,
+    "cloud_sha256": "633E407DFF0DB26A64A58AA6E72EC2CF68F9803B79CD873C16E21372D278221A",
+    "equal": false
+  }
+]

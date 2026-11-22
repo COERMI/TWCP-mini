@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "plate-keyboard": "/components/plate-keyboard/index"
+  },
+  "navigationBarTitleText": "运输照片采集"
+}

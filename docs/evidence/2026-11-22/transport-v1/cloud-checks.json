@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-22T08:54:42.562Z",
+  "version": "transport-v1-invitation-1",
+  "checks": [
+    {
+      "check": "same-request-reuses-record-and-invite",
+      "passed": true
+    },
+    {
+      "check": "same-plate-separate-trips-and-numbers",
+      "passed": true
+    },
+    {
+      "check": "changed-retry-rejected",
+      "passed": true
+    },
+    {
+      "check": "no-admin-token-rejected",
+      "passed": true
+    },
+    {
+      "check": "signed-token-without-expiry-rejected",
+      "passed": true
+    },
+    {
+      "check": "expired-admin-rejected",
+      "passed": true
+    },
+    {
+      "check": "event-identity-does-not-grant-driver-access",
+      "passed": true
+    },
+    {
+      "check": "admin-can-read-unclaimed-trip-without-owner-leak",
+      "passed": true
+    },
+    {
+      "check": "revoke-unclaimed-invitation-is-idempotent",
+      "passed": true
+    },
+    {
+      "check": "revoked-invitation-not-reissued-by-create-retry",
+      "passed": true
+    }
+  ],
+  "note": "Driver identity/claim races are local simulated tests; actual phone binding still required."
+}

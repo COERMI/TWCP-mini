@@ -1,0 +1,106 @@
+<!-- pages/record/record.wxml -->
+<view class="page">
+  <!-- 档案信息栏 -->
+  <view class="record-bar" wx:if="{{record}}">
+    <view class="record-main">
+      <view class="record-no">档案 {{record.record_no}}</view>
+      <view class="record-plate">车牌 {{record.plate_number}}</view>
+    </view>
+    <view class="record-status {{record.status === 'submitted' ? 'submitted' : 'active'}}">
+      {{record.status === 'submitted' ? '已提交' : '进行中'}}
+    </view>
+  </view>
+
+  <!-- 固定运输照片：严格按顺序引导 -->
+  <view class="section-title">固定运输照片<text class="section-tip">按顺序拍摄</text></view>
+  <view class="steps">
+    <view
+      class="step {{!step.unlocked ? 'locked' : ''}} {{step.done ? 'done' : ''}}"
+      wx:for="{{steps}}"
+      wx:key="type"
+    >
+      <view class="step-num">{{index + 1}}</view>
+      <view class="step-info">
+        <view class="step-name">{{step.name}}</view>
+        <view class="step-desc">{{step.desc}}</view>
+        <view class="step-count" wx:if="{{step.count > 0}}">已拍 {{step.count}} 张</view>
+      </view>
+      <view
+        class="step-btn {{!step.unlocked ? 'disabled' : ''}}"
+        data-type="{{step.type}}"
+        bindtap="onShootFixed"
+      >{{step.done ? '补拍' : '拍摄'}}</view>
+    </view>
+  </view>
+
+  <!-- 运输过程事件：开关门随时可拍、不限次数 -->
+  <view class="section-title">运输过程事件<text class="section-tip">每次开关门都要拍</text></view>
+  <view class="door-row">
+    <view class="door-btn" bindtap="onShootDoorOpen">
+      <view class="door-name">拍摄开门照片</view>
+      <view class="door-count">已拍 {{doorOpenCount}} 次</view>
+    </view>
+    <view class="door-btn" bindtap="onShootDoorClose">
+      <view class="door-name">拍摄关门照片</view>
+      <view class="door-count">已拍 {{doorCloseCount}} 次</view>
+    </view>
+  </view>
+
+  <!-- 本次运输照片统计 -->
+  <view class="stats" wx:if="{{record}}">
+    <view class="stat">
+      <view class="stat-num">{{steps[0].count}}</view>
+      <view class="stat-label">运单</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{steps[1].count}}</view>
+      <view class="stat-label">货物</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{steps[2].count}}</view>
+      <view class="stat-label">装箱</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{doorOpenCount}}</view>
+      <view class="stat-label">开门</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{doorCloseCount}}</view>
+      <view class="stat-label">关门</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{totalPhotos}}</view>
+      <view class="stat-label">照片总数</view>
+    </view>
+  </view>
+
+  <!-- 完成本次运输 -->
+  <view class="submit-area">
+    <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting}}">
+      {{record && record.status === 'submitted' ? '继续追加照片' : '完成本次运输'}}
+    </button>
+    <view class="submit-tip">提交后仍可继续追加开门、关门等照片</view>
+  </view>
+
+  <!-- 照片预览/确认上传弹层 -->
+  <view class="preview-mask" wx:if="{{preview.visible}}">
+    <view class="preview-box">
+      <view class="preview-title">{{preview.eventName}}</view>
+      <image class="preview-img" src="{{preview.tempPath}}" mode="aspectFit" />
+      <textarea
+        class="preview-remark"
+        placeholder="备注（可选，如：第2次开门 - 中途卸货）"
+        maxlength="100"
+        value="{{previewRemark}}"
+        bindinput="onRemarkInput"
+      />
+      <view class="preview-actions">
+        <view class="preview-retake" bindtap="onRetake">重拍</view>
+        <view class="preview-upload" bindtap="onConfirmUpload">
+          {{uploading ? '上传中…' : '上传'}}
+        </view>
+      </view>
+      <view class="preview-close" bindtap="onClosePreview">取消</view>
+    </view>
+  </view>
+</view>

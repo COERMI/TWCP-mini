@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-22T08:58:01.5557397Z",
+  "checks": [
+    {
+      "passed": true,
+      "check": "prepare-a"
+    },
+    {
+      "passed": true,
+      "check": "forged-driver"
+    },
+    {
+      "passed": true,
+      "check": "no-expiry"
+    }
+  ]
+}

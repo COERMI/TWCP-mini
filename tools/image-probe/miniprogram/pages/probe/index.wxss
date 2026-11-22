@@ -1,0 +1,9 @@
+page{background:#f3f5f1;color:#243c33;font-size:32rpx}
+.page{padding:40rpx 32rpx}.tag{font-size:24rpx;color:#175b46}
+.title{font-size:46rpx;font-weight:bold;margin:24rpx 0}
+.hint{color:#65776d;line-height:1.8;font-size:28rpx;margin:22rpx 0}
+button{margin:22rpx 0;border:1px solid #d3dfce;border-radius:16rpx;font-size:32rpx}
+.primary{background:#175b46;color:white}.box{background:white;border:1px solid #dae3d5;padding:24rpx;border-radius:18rpx;margin:24rpx 0}
+.notice{background:#e5f0df;padding:24rpx;border-radius:16rpx;margin:24rpx 0}
+.error{background:#fff0eb;color:#9b3927;border:1px solid #cc6c57;padding:24rpx;border-radius:16rpx;margin:24rpx 0}
+.mono{font-family:monospace;word-break:break-all;font-size:24rpx;color:#65776d}image{width:100%}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>运输影像 · 流程原型</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./workflow.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="shell-header">
+    <a class="brand" href="#driver"><span class="brand-icon">运</span><span>运输影像<small>让每一次交接有据可查</small></span></a>
+    <nav aria-label="切换使用端">
+      <button data-action="driver" class="tab" aria-pressed="true">司机端</button>
+      <button data-action="admin" class="tab" aria-pressed="false">总部后台</button>
+    </nav>
+    <span class="prototype-label">交互原型 · 示例数据</span>
+  </header>
+  <div class="workspace">
+    <aside class="guide">
+      <span class="eyebrow">现场流程 / 新版原型</span>
+      <h1>认准这趟车，<br>跟着提示拍。</h1>
+      <p>运输前拍齐三项，途中每次开关门都拍，全部卸货后确认完成。</p>
+      <div class="guide-step"><span>01</span><div><strong>一趟一个拍照入口</strong><p>重复打开，还是原来的这趟。</p></div></div>
+      <div class="guide-step"><span>02</span><div><strong>运输前，依次拍齐三项</strong><p>货运单 → 货物码放 → 装好的车厢。</p></div></div>
+      <div class="guide-step"><span>03</span><div><strong>每次开门、关门都拍</strong><p>不分卸货或检查；问题随时记录。</p></div></div>
+      <div class="guide-note">本页不调用相机、定位或云服务。照片、时间、位置均为演示内容；刷新保留本浏览器的演示进度。</div>
+      <details class="demo-options"><summary>演示身份（不是真实登录）</summary><label for="demo-actor">当前操作人</label><select id="demo-actor"><option value="driver-a">司机甲</option><option value="helper-b">现场协助者乙</option></select><p class="muted">可验证转发限制与总部接续入口；正式授权需服务端实现。</p></details>
+      <button data-action="reset" class="text-button">重置为示例档案</button>
+    </aside>
+    <main id="app" tabindex="-1" aria-label="原型操作区域"></main>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">请确认</h2>
+    <p id="confirm-message"></p>
+    <div id="confirm-reason-block" hidden><label for="confirm-reason">操作原因</label><input id="confirm-reason" maxlength="100" placeholder="例如：照片模糊，已补拍清晰版本"></div>
+    <div class="actions"><button id="confirm-no" class="secondary">保留</button><button id="confirm-yes" class="primary">确认</button></div>
+  </dialog>
+  <dialog id="photo-dialog" aria-labelledby="photo-title">
+    <div class="viewer-top"><h2 id="photo-title">照片</h2><button data-action="close-photo" class="secondary">关闭</button></div>
+    <div id="photo-display"></div>
+    <div id="photo-meta"></div>
+    <div class="viewer-controls">
+      <button data-action="previous-photo" class="secondary">上一张</button>
+      <div><button data-action="watermark" class="secondary">水印图</button><button data-action="original" class="secondary">原图</button></div>
+      <button data-action="next-photo" class="secondary">下一张</button>
+    </div>
+  </dialog>
+</body>
+</html>

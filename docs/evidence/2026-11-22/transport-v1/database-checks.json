@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-22T08:57:11.946Z",
+  "checks": [
+    {
+      "collection": "transport_v1_records",
+      "acl": "ADMINONLY"
+    },
+    {
+      "collection": "transport_v1_invites",
+      "acl": "ADMINONLY"
+    },
+    {
+      "collection": "transport_v1_requests",
+      "acl": "ADMINONLY"
+    },
+    {
+      "collection": "transport_v1_audit",
+      "acl": "ADMINONLY"
+    },
+    {
+      "collection": "transport_v1_counters",
+      "acl": "ADMINONLY"
+    }
+  ]
+}

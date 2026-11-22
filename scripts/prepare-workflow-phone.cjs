@@ -1,0 +1,9 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const target = path.join(process.env.LOCALAPPDATA, 'Codex', 'transport-v1-20261122');
+const invite = JSON.parse(fs.readFileSync(path.join(target, 'driver-target.private.json'), 'utf8'));
+if (!/^[a-f0-9]{64}$/.test(invite.invite) || !/^trip_[a-f0-9]{40}$/.test(invite.record_id)) throw new Error('Invalid driver test target');
+const phone = path.join(target, 'workflow-phone-project');
+fs.cpSync(path.resolve(__dirname, '../tools/workflow-probe'), phone, { recursive: true });
+fs.writeFileSync(path.join(phone, 'miniprogram/target.js'), `module.exports = ${JSON.stringify(invite)};\n`);
+console.log('Prepared workflow phone project with the existing claimed test trip; no admin credentials included.');

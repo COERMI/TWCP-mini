@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-22T11:00:47.813Z",
+  "userFeedback": "没有报错",
+  "source": "负责人在新版整趟二维码后反馈",
+  "phaseObserved": "completed",
+  "effectivePhotosObserved": 5,
+  "pendingPhotosObserved": 0,
+  "completedDoorGroupsObserved": 1,
+  "baseTypesObserved": [
+    "WAYBILL",
+    "CARGO_PHOTO",
+    "LOADED_COMPARTMENT"
+  ],
+  "limitation": "反馈登记为未出现报错；未据此推断所有机型、弱网、越权、照片清晰度矩阵通过。"
+}

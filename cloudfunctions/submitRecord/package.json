@@ -1,0 +1,9 @@
+{
+  "name": "submitRecord",
+  "version": "1.0.0",
+  "description": "提交运输档案（状态置为已提交，提交后仍可追加）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

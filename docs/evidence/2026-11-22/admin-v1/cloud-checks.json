@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-22T11:00:47.814Z",
+  "version": "transport-v1-admin-1",
+  "checks": [
+    {
+      "check": "admin-list-new-records",
+      "passed": true
+    },
+    {
+      "check": "admin-list-pages-do-not-overlap",
+      "passed": true
+    },
+    {
+      "check": "no-admin-token-refused",
+      "passed": true
+    },
+    {
+      "check": "expired-admin-refused",
+      "passed": true
+    },
+    {
+      "check": "admin-without-expiry-refused",
+      "passed": true
+    },
+    {
+      "check": "legacy-record-list-compatible",
+      "passed": true
+    },
+    {
+      "check": "legacy-record-detail-compatible",
+      "passed": true
+    },
+    {
+      "check": "headquarters-sees-two-independent-door-groups",
+      "passed": true
+    },
+    {
+      "check": "admin-can-sign-original-and-watermark",
+      "passed": true
+    },
+    {
+      "check": "admin-signed-images-downloadable",
+      "passed": true
+    },
+    {
+      "check": "admin-photo-cannot-cross-trip",
+      "passed": true
+    },
+    {
+      "check": "literal-regex-search-not-executed",
+      "passed": true
+    }
+  ],
+  "scope": "Real deployed API; list, legacy compatibility and authorization. Image downloads use synthetic automation trip only."
+}

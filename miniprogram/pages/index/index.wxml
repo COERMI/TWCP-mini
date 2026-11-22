@@ -1,0 +1,47 @@
+<!-- pages/index/index.wxml -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">运输照片采集</view>
+    <view class="hero-sub">请填写本次运输的车辆信息</view>
+  </view>
+
+  <view class="card">
+    <view class="field-label">车牌号码</view>
+    <view class="plate-input" bindtap="onTapPlateInput">
+      <text class="{{plateNumber ? 'plate-value' : 'plate-placeholder'}}">
+        {{plateNumber || '请选择车牌号'}}
+      </text>
+      <text class="plate-arrow">▾</text>
+    </view>
+    <view class="field-tip">点击上方输入框，使用专用车牌键盘输入</view>
+  </view>
+
+  <view class="actions">
+    <button class="btn-primary" bindtap="onStart" disabled="{{submitting}}">
+      {{submitting ? '正在创建…' : '开始记录运输'}}
+    </button>
+  </view>
+
+  <!-- 继续上次运输 -->
+  <view class="card continue" wx:if="{{lastRecord}}">
+    <view class="continue-info">
+      <view class="continue-title">上次运输档案</view>
+      <view class="continue-line">档案编号：{{lastRecord.record_no}}</view>
+      <view class="continue-line">车牌号码：{{lastRecord.plate_number}}</view>
+      <view class="continue-line">档案状态：{{lastRecord.status === 'submitted' ? '已提交' : '进行中'}}</view>
+    </view>
+    <view class="continue-actions">
+      <view class="btn-secondary continue-btn" bindtap="onContinue">继续该运输</view>
+      <view class="continue-new" bindtap="onNewTransport">开始新运输</view>
+    </view>
+  </view>
+
+  <!-- 车牌键盘 -->
+  <plate-keyboard
+    value="{{plateNumber}}"
+    visible="{{keyboardVisible}}"
+    bind:input="onPlateInput"
+    bind:confirm="onPlateConfirm"
+    bind:close="onPlateClose"
+  />
+</view>

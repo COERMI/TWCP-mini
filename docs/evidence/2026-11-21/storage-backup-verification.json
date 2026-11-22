@@ -1,0 +1,30 @@
+[
+  {
+    "label": "image-1",
+    "bytes": 688128,
+    "size_matches": true,
+    "md5_matches_etag": true,
+    "sha256": "3B8B31A85085983A0116AB18A23E9EFF29B4960C9C89D6A566E555E6AE1808C4"
+  },
+  {
+    "label": "image-2",
+    "bytes": 148738,
+    "size_matches": true,
+    "md5_matches_etag": true,
+    "sha256": "BD2FB4D6BF0E48FD02B23C4DA0E60D0167866BD7BA23DC01438FABEBAD544C87"
+  },
+  {
+    "label": "image-3",
+    "bytes": 659463,
+    "size_matches": true,
+    "md5_matches_etag": true,
+    "sha256": "242A5ABA1588D0A92DAF37CF427F6DBB775560B6A9F4CE5792050462B6BA0298"
+  },
+  {
+    "label": "image-4",
+    "bytes": 170263,
+    "size_matches": true,
+    "md5_matches_etag": true,
+    "sha256": "834498C8452C6BB945DE8C0621070DFE06DC83524733FC7CA6F208651611BAD9"
+  }
+]

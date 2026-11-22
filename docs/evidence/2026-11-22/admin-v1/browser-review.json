@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-22T11:48:41.327Z",
+  "role": "工程走查",
+  "checks": [
+    "literal-record-number-filter-returned-one-trip",
+    "first-door-group-second-original-photo-displayed",
+    "refresh-links-keeps-selected-photo-and-kind",
+    "removed-photo-reasons-visible",
+    "return-keeps-keyword-and-page",
+    "legacy-source-returns-two-existing-records"
+  ],
+  "syntheticPhotosOnly": true,
+  "notClaimed": [
+    "natural-link-expiry-wait",
+    "headquarters-user-acceptance",
+    "cancelled-event-browser-fixture"
+  ]
+}

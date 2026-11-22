@@ -1,0 +1,61 @@
+{
+  "at": "2026-11-22T11:48:41.333Z",
+  "runtimeConfig": "served by loopback review server; environment and region only",
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 551,
+      "sha256": "df17352b1ad7d0804f38fed120251564349ccbbeaa880eec1e1ad86f5b3549e2"
+    },
+    {
+      "file": "assets/admin-BLKVDQgW.js",
+      "bytes": 1592,
+      "sha256": "a62e2df7f8743b0b12ca59dcb419329ef2af5aa0b794ea1905ebd017320007ee"
+    },
+    {
+      "file": "assets/index-m5z3lL2S.css",
+      "bytes": 363418,
+      "sha256": "1b531c36fd01a01c551a84a31b6a0565e303795b9d34c48954c934af477a7c3f"
+    },
+    {
+      "file": "assets/index-XmNWgI7R.js",
+      "bytes": 2184216,
+      "sha256": "227606c68bd3a90fa4e5c049c6e01479a57a8aceae1668db1c168aab6a536bff"
+    },
+    {
+      "file": "assets/Login-pgkcXhBe.js",
+      "bytes": 2074,
+      "sha256": "a78894795fe9c395ea383b8c5ff47ce911c553d0581bf740e6cc52b597073ef3"
+    },
+    {
+      "file": "assets/Login-PxHpJNs_.css",
+      "bytes": 438,
+      "sha256": "dc39cbc871a7132484f7e555687e1b68800b17e9888a4d06e1697200639130ef"
+    },
+    {
+      "file": "assets/RecordDetail-B3-V7b3T.css",
+      "bytes": 2363,
+      "sha256": "a2035e57f15a629eddd9dad2e7360d4a779c2f8c1e19f5dd3db0ee7bc1e04fc9"
+    },
+    {
+      "file": "assets/RecordDetail-DHHZtC7f.js",
+      "bytes": 8777,
+      "sha256": "b1d1c0dfd57ebe25b91d3c8463e57eed4a08b931e30556cd9e8b4f9e2f863912"
+    },
+    {
+      "file": "assets/RecordList-9krnnEaa.css",
+      "bytes": 1621,
+      "sha256": "dfbd08e596e24f0ebc10fd4ef0fb5bfe91def3c7b2cec6f2a1c40c1c4f94ebd2"
+    },
+    {
+      "file": "assets/RecordList-CTjo7dQ3.js",
+      "bytes": 14209,
+      "sha256": "eced6ea33bf135e36fd5eb268a951d987298deab90b95b0db0d7267f9cc7fa99"
+    },
+    {
+      "file": "assets/workflow-CuEXJk9p.js",
+      "bytes": 1069,
+      "sha256": "b309b741f8d38332a56ff10b579a8de5aa1c51111e4d9fd0c34932cd46936cc6"
+    }
+  ]
+}

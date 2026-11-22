@@ -1,0 +1,56 @@
+/* app.wxss —— 全局样式 */
+page {
+  background: #f5f6f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: #1a1a1a;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+/* 主按钮 */
+.btn-primary {
+  background: #1f6feb;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  padding: 0 40rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  border: none;
+}
+.btn-primary::after {
+  border: none;
+}
+.btn-primary[disabled] {
+  background: #c3d4f2;
+  color: #fff;
+}
+
+/* 次要按钮 */
+.btn-secondary {
+  background: #fff;
+  color: #1f6feb;
+  border: 2rpx solid #1f6feb;
+  border-radius: 16rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  padding: 0 40rpx;
+  height: 96rpx;
+  line-height: 92rpx;
+  text-align: center;
+}
+.btn-secondary::after {
+  border: none;
+}
+
+/* 卡片 */
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin: 20rpx 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "collection": "transport_records",
+    "original_count": 2,
+    "restored_count": 2,
+    "source_unchanged": true,
+    "restored_matches": true,
+    "original_sha256": "c0928a57ee86cd5523978ac30b1cd16c8044eb07670baae2af33c3faa26967b4",
+    "restored_sha256": "c0928a57ee86cd5523978ac30b1cd16c8044eb07670baae2af33c3faa26967b4"
+  },
+  {
+    "collection": "transport_events",
+    "original_count": 0,
+    "restored_count": 0,
+    "source_unchanged": true,
+    "restored_matches": true,
+    "original_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "restored_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "collection": "photo_records",
+    "original_count": 0,
+    "restored_count": 0,
+    "source_unchanged": true,
+    "restored_matches": true,
+    "original_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "restored_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "collection": "counters",
+    "original_count": 1,
+    "restored_count": 1,
+    "source_unchanged": true,
+    "restored_matches": true,
+    "original_sha256": "26541a3a68fc79a0342f83584bb7350e19e4c21f7d68bcd8662bc50b1ef2b58f",
+    "restored_sha256": "26541a3a68fc79a0342f83584bb7350e19e4c21f7d68bcd8662bc50b1ef2b58f"
+  }
+]

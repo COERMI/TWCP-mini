@@ -1,0 +1,28 @@
+page { background: #f4f6f3; color: #1f352b; font-size: 32rpx; }
+.page { padding: 32rpx 28rpx 70rpx; }
+.eyebrow, .muted { font-size: 25rpx; color: #66776d; margin-bottom: 16rpx; }
+.trip-head { line-height: 1.7; }
+.plate { font-size: 56rpx; font-weight: 700; letter-spacing: 3rpx; }
+.heading { font-size: 40rpx; font-weight: 700; margin: 30rpx 0 20rpx; line-height: 1.5; }
+.section { font-size: 38rpx; font-weight: 700; margin: 45rpx 0 20rpx; }
+.card { background: #fff; padding: 28rpx; border: 2rpx solid #d3ddd5; border-radius: 20rpx; margin: 22rpx 0; }
+.title { font-size: 35rpx; font-weight: 700; line-height: 1.6; }
+.count { display: block; font-size: 27rpx; font-weight: 400; color: #557365; }
+.hint { color: #65776c; font-size: 28rpx; line-height: 1.7; margin: 15rpx 0; }
+button { font-size: 31rpx; line-height: 1.6; padding: 21rpx 14rpx; border-radius: 12rpx; margin: 18rpx 0; background: #eef3ef; color: #244d3b; white-space: normal; }
+button.primary { background: #176047; color: white; }
+button[disabled] { background: #e4e9e5 !important; color: #77857b !important; }
+.actions { display: flex; flex-wrap: wrap; gap: 12rpx; }
+.actions button { flex: 1; min-width: 180rpx; margin: 12rpx 0; }
+.actions button[size="mini"] { font-size: 26rpx; padding: 15rpx 10rpx; }
+.photo { border-top: 1rpx solid #dde4de; padding-top: 20rpx; margin-top: 22rpx; }
+.photo-title { font-size: 28rpx; line-height: 1.6; }
+.alert { color: #922f29; border: 2rpx solid #c56d63; background: #fff0eb; padding: 24rpx; line-height: 1.7; border-radius: 14rpx; margin: 20rpx 0; }
+.notice { color: #246347; line-height: 1.7; font-size: 29rpx; margin: 16rpx 0; }
+.pending { border-color: #cead56; background: #fffbef; }
+.locked { background: #edf0ed; }
+.finish { margin-top: 40rpx; border-color: #8daf9a; }
+.note { white-space: pre-wrap; line-height: 1.7; margin: 18rpx 0; }
+textarea { width: 100%; height: 180rpx; box-sizing: border-box; padding: 20rpx; background: #f4f6f3; border: 1rpx solid #c9d5cc; border-radius: 12rpx; font-size: 30rpx; line-height: 1.6; }
+button.quiet { background: transparent; font-size: 27rpx; color: #77664c; }
+button.danger-link { color: #9b473e; }

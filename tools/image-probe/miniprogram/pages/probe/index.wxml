@@ -1,0 +1,29 @@
+<view class="page">
+  <text class="tag">第一版开发 · 图片技术试件</text>
+  <view class="title">先验证一张真实照片</view>
+  <view class="hint">可拍测试纸张或箱子。测试图片单独存放，不计入运输记录；本页不采集定位和天气。</view>
+  <view wx:if="{{expired}}" class="error">本次测试入口已过期，请联系开发人员重新生成。</view>
+  <block wx:if="{{!preview}}">
+    <button class="primary" data-type="DOOR_OPEN" bindtap="shoot" disabled="{{busy || expired}}">拍现场测试照片</button>
+    <button data-type="WAYBILL" bindtap="shoot" disabled="{{busy || expired}}">拍运单／文字测试页</button>
+  </block>
+  <view wx:if="{{preview}}">
+    <image src="{{preview.path}}" mode="widthFix" />
+    <button class="primary" bindtap="usePhoto" loading="{{busy}}" disabled="{{busy}}">用这张，上传测试</button>
+    <button bindtap="cancel" disabled="{{busy}}">放弃这张</button>
+  </view>
+  <view wx:if="{{draft}}" class="box">
+    <view>当前照片已保存在手机</view>
+    <text class="mono">{{draft.requestId}}</text>
+    <button class="primary" bindtap="upload" loading="{{busy}}" disabled="{{busy || expired}}">继续上传／重试处理</button>
+  </view>
+  <view wx:if="{{message}}" class="notice">{{message}}</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:if="{{result}}" class="box">
+    <view>状态：{{result.status === 'ready' ? '水印就绪' : '水印失败，原图保留'}}</view>
+    <text class="mono">{{result.requestId}}</text>
+    <button data-kind="original" bindtap="viewImage">查看原图</button>
+    <button wx:if="{{result.watermarkedFileID}}" class="primary" data-kind="watermark" bindtap="viewImage">查看水印图</button>
+    <view class="hint">请放大检查：中文是否完整、方向是否正确、正文是否被遮挡。运单水印应在正文下方。</view>
+  </view>
+</view>

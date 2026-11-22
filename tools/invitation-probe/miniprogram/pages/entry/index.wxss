@@ -1,0 +1,15 @@
+page { background: #f5f7f6; color: #17382c; font-size: 34rpx; }
+.page { padding: 42rpx 32rpx; }
+.tag { color: #65786e; font-size: 26rpx; margin-bottom: 22rpx; }
+.title { font-size: 46rpx; font-weight: 700; margin-bottom: 32rpx; }
+.card { padding: 36rpx 28rpx; border: 2rpx solid #ccd8d0; border-radius: 22rpx; background: #fff; margin-bottom: 32rpx; }
+.plate { font-size: 66rpx; font-weight: 700; letter-spacing: 4rpx; margin-bottom: 24rpx; }
+.detail { margin: 14rpx 0; line-height: 1.5; }
+.number { margin-top: 24rpx; font-size: 28rpx; color: #65786e; }
+button { margin: 22rpx 0; font-size: 32rpx; border-radius: 14rpx; line-height: 1.6; padding: 24rpx 16rpx; }
+button.primary { background: #176046; color: white; }
+button.wrong { color: #a32f2f; background: #fff0ef; border: 2rpx solid #c15555; }
+.alert { padding: 28rpx; background: #fff0ef; border: 2rpx solid #c15555; border-radius: 16rpx; color: #922929; line-height: 1.7; margin: 26rpx 0; }
+.alert-title { font-weight: 700; margin-bottom: 16rpx; }
+.success { padding: 24rpx 0; line-height: 1.7; color: #176046; }
+.hint { margin-top: 24rpx; color: #65786e; font-size: 28rpx; line-height: 1.7; }

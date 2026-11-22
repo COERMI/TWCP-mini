@@ -1,0 +1,27 @@
+[
+  {
+    "file": "index.js",
+    "sha256": "35f845ab2045daec23737146bb697c2d5435ca82fab9a741c8dfc01879df67db",
+    "deployedMatches": true
+  },
+  {
+    "file": "auth.js",
+    "sha256": "d424a67d1aef914e9cd5d6ecdcbbb06eada302dfa6f9c6507a30785780d2529b",
+    "deployedMatches": true
+  },
+  {
+    "file": "service.js",
+    "sha256": "fe17d665a5b40a856f86ecffdf6a2c397edcdcd66cd7cb33c85fa21344ed2af6",
+    "deployedMatches": true
+  },
+  {
+    "file": "store.js",
+    "sha256": "61b67382401383f60e0dc5fe2529d819168dac50217a2785374dcfa9bb9f5043",
+    "deployedMatches": true
+  },
+  {
+    "file": "package.json",
+    "sha256": "e5d76479bcf62e4c5d81bb0bb06e80352aef314665b05718d6b89f5a16f165e6",
+    "deployedMatches": true
+  }
+]

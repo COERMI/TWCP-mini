@@ -1,0 +1,27 @@
+<!-- components/plate-keyboard/index.wxml -->
+<view class="plate-keyboard" wx:if="{{visible}}">
+  <view class="kb-preview">
+    <text class="kb-preview-label">车牌号</text>
+    <text class="kb-preview-value">{{value || '请选择'}}</text>
+  </view>
+
+  <view class="kb-body">
+    <view class="kb-row" wx:for="{{rows}}" wx:for-item="row" wx:key="index">
+      <view
+        class="kb-key {{item.type !== 'char' ? 'kb-func' : ''}}"
+        wx:for="{{row}}"
+        wx:for-item="key"
+        wx:key="label"
+        data-key="{{key.type}}"
+        data-label="{{key.label}}"
+        bindtap="onTapKey"
+      >
+        {{key.label}}
+      </view>
+    </view>
+  </view>
+
+  <view class="kb-footer">
+    <view class="kb-confirm" bindtap="onConfirm">确定</view>
+  </view>
+</view>

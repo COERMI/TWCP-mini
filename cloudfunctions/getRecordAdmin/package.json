@@ -1,0 +1,9 @@
+{
+  "name": "getRecordAdmin",
+  "version": "1.0.0",
+  "description": "后台档案详情：基本信息 + 事件 + 照片 + 临时访问URL",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

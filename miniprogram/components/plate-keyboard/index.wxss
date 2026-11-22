@@ -1,0 +1,80 @@
+/* components/plate-keyboard/index.wxss */
+.plate-keyboard {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f0f1f4;
+  padding: 20rpx 12rpx 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  border-radius: 24rpx 24rpx 0 0;
+  box-shadow: 0 -6rpx 24rpx rgba(0, 0, 0, 0.08);
+  z-index: 999;
+}
+
+.kb-preview {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 18rpx 24rpx;
+  margin-bottom: 16rpx;
+}
+.kb-preview-label {
+  font-size: 26rpx;
+  color: #888;
+  margin-right: 20rpx;
+}
+.kb-preview-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 4rpx;
+}
+
+.kb-body {
+  display: flex;
+  flex-direction: column;
+}
+.kb-row {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.kb-key {
+  flex: 1;
+  height: 84rpx;
+  margin: 0 5rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.kb-key:active {
+  background: #e3e8f0;
+}
+.kb-func {
+  background: #d9dde3;
+  color: #555;
+  font-size: 30rpx;
+}
+
+.kb-footer {
+  margin-top: 8rpx;
+}
+.kb-confirm {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1f6feb;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 700;
+  border-radius: 12rpx;
+}
+.kb-confirm:active {
+  background: #1756bd;
+}

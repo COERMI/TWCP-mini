@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.ttc binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.zip binary
+# Preserve upstream license text verbatim, including its original whitespace.
+cloudfunctions/imagePipelineProbe/fonts/*.txt -whitespace

@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-22T11:48:41.326Z",
+  "role": "工程走查",
+  "realCloud": true,
+  "checks": [
+    {
+      "check": "draft-survives-page-reload",
+      "passed": true
+    },
+    {
+      "check": "normal-admin-form-creates-test-trip",
+      "passed": true,
+      "recordNo": "TR202611000012"
+    },
+    {
+      "check": "created-trip-immediately-visible-in-new-list",
+      "passed": true
+    },
+    {
+      "check": "existing-unclaimed-entry-recovered-without-creating-trip",
+      "passed": true
+    },
+    {
+      "check": "preview-compiled-by-installed-wechat-tools",
+      "passed": true
+    },
+    {
+      "check": "qr-decoded-in-real-browser",
+      "passed": true,
+      "width": 470,
+      "height": 470,
+      "mime": "image/jpeg"
+    }
+  ],
+  "intermediateFailure": "Installed CLI emitted JPEG under a requested PNG filename. Format detection corrected; real retry rendered successfully.",
+  "scope": "Browser uses normal administrator login and authenticated cloud APIs. Preview targets a newly created TEST trip. No physical phone test of this new invitation has been claimed. QR and full preview screenshot are private."
+}

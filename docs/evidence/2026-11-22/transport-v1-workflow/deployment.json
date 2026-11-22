@@ -1,0 +1,143 @@
+{
+  "at": "2026-11-22T10:02:40.563Z",
+  "version": "transport-v1-workflow-3",
+  "function": {
+    "name": "transportV1",
+    "status": "Active",
+    "runtime": "Nodejs20.19",
+    "memoryMB": 1024,
+    "timeoutSeconds": 60
+  },
+  "database": [
+    {
+      "collection": "transport_v1_events",
+      "acl": "ADMINONLY",
+      "indexes": [
+        {
+          "name": "_id_",
+          "keys": [
+            "_id"
+          ]
+        },
+        {
+          "name": "_openid_1",
+          "keys": [
+            "_openid"
+          ]
+        },
+        {
+          "name": "record_id_cursor",
+          "keys": [
+            "_id",
+            "record_id"
+          ]
+        },
+        {
+          "name": "record_id_then_id",
+          "keys": [
+            "record_id",
+            "_id"
+          ]
+        }
+      ]
+    },
+    {
+      "collection": "transport_v1_photos",
+      "acl": "ADMINONLY",
+      "indexes": [
+        {
+          "name": "_id_",
+          "keys": [
+            "_id"
+          ]
+        },
+        {
+          "name": "_openid_1",
+          "keys": [
+            "_openid"
+          ]
+        },
+        {
+          "name": "record_id_cursor",
+          "keys": [
+            "_id",
+            "record_id"
+          ]
+        },
+        {
+          "name": "record_id_then_id",
+          "keys": [
+            "record_id",
+            "_id"
+          ]
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "acl": "ADMINONLY"
+  },
+  "files": [
+    {
+      "file": "archive-upload.js",
+      "sha256": "50f9b924aee9da54789e2a39df23928e2663eb04000768399870476a519c080e",
+      "matched": true
+    },
+    {
+      "file": "archive-worker.js",
+      "sha256": "b51ab46b75f67d39db517a3f67d3a7bc44b9a198af80dade4b57aad649645457",
+      "matched": true
+    },
+    {
+      "file": "auth.js",
+      "sha256": "d424a67d1aef914e9cd5d6ecdcbbb06eada302dfa6f9c6507a30785780d2529b",
+      "matched": true
+    },
+    {
+      "file": "index.js",
+      "sha256": "4fe449282c47bf38320a29c4582dce5ae8ac03b69f1f884d9db7fd92ae8548cf",
+      "matched": true
+    },
+    {
+      "file": "media.js",
+      "sha256": "107c83e9d979b56688ad9b496e68f47ed8fda04834967bea04a65ac070a182b5",
+      "matched": true
+    },
+    {
+      "file": "package.json",
+      "sha256": "e015deff743ad3bb83e97d5731fe59d1144aff29dff76ab4d0fdcbc0356376f4",
+      "matched": true
+    },
+    {
+      "file": "service.js",
+      "sha256": "95873229296d740aec8723de02fbbce0f16bf3125c045a87762ee23802454321",
+      "matched": true
+    },
+    {
+      "file": "store.js",
+      "sha256": "b6d0fc78b1f242c57c282624dede05c4a563e6c19325ef2a19a9562296cf0b3e",
+      "matched": true
+    },
+    {
+      "file": "upload-policy.js",
+      "sha256": "40091acd82abf7454660d9257d2a2f119707bd32c64a27bc9b20f25344b4274e",
+      "matched": true
+    },
+    {
+      "file": "workflow.js",
+      "sha256": "ff99bc338e794ac015b6c9204a1470a4a30cf71436f624e70ae38082eed09158",
+      "matched": true
+    },
+    {
+      "file": "image/renderer.js",
+      "sha256": "a03cd47c7b837289bb78f1d727b334ee3485d51357df1c6552d6cc96e91c8de5",
+      "matched": true
+    },
+    {
+      "file": "image/fonts/wqy-microhei.ttc",
+      "sha256": "e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212",
+      "matched": true
+    }
+  ],
+  "note": "Temporary credentials, invitations and full function responses are kept outside source tree."
+}

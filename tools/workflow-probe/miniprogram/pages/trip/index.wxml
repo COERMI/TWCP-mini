@@ -1,0 +1,84 @@
+<template name="photos">
+  <view wx:for="{{photos}}" wx:key="id" wx:for-item="photo" class="photo">
+    <view class="photo-title">{{index + 1}}. {{photo.label}} · {{photo.statusText}}</view>
+    <view class="actions">
+      <button wx:if="{{photo.status === 'ready'}}" size="mini" data-id="{{photo.id}}" data-kind="watermarked" bindtap="preview" disabled="{{busy}}">查看水印图</button>
+      <button wx:if="{{photo.original_bytes}}" size="mini" data-id="{{photo.id}}" data-kind="original" bindtap="preview" disabled="{{busy}}">查看原图</button>
+      <button wx:if="{{photo.retryable && !done}}" size="mini" data-id="{{photo.id}}" bindtap="retryRemote" disabled="{{busy}}">重试归档</button>
+      <button wx:if="{{!done}}" size="mini" class="danger-link" data-id="{{photo.id}}" bindtap="remove" disabled="{{busy}}">移除</button>
+    </view>
+  </view>
+</template>
+<view class="page">
+  <view class="eyebrow">整趟流程联调 · 测试运输</view>
+  <view wx:if="{{record}}" class="trip-head">
+    <view class="plate">{{record.plate_number}}</view>
+    <view>{{record.ship_date}} · {{record.description}}</view>
+    <view class="muted">{{record.record_no}}</view>
+  </view>
+  <view class="heading">{{phaseText || '正在读取本趟运输…'}}</view>
+  <view wx:if="{{error}}" class="alert">{{error}}</view>
+  <view wx:if="{{notice}}" class="notice">{{notice}}</view>
+  <button bindtap="refresh" disabled="{{busy}}" loading="{{busy}}">{{busy ? '正在处理，请稍候…' : '刷新本趟状态'}}</button>
+
+  <view wx:if="{{pending.length}}" class="card pending">
+    <view class="title">本机待处理 {{pending.length}} 张</view>
+    <view class="hint">照片保留在这台手机；恢复网络后点继续上传。退出后重新进入也能接续。</view>
+    <view wx:for="{{pending}}" wx:key="id" class="photo">
+      <view>{{item.event_name}} · {{item.label}}</view>
+      <view class="hint">{{item.error || item.statusText}}</view>
+      <button data-id="{{item.id}}" bindtap="retry" disabled="{{busy || done}}">继续上传 / 重试归档</button>
+      <button class="quiet" data-id="{{item.id}}" bindtap="discard" disabled="{{busy || done}}">移除这张待处理照片</button>
+    </view>
+  </view>
+  <block wx:if="{{state}}">
+    <view class="section">运输前必须拍</view>
+    <view wx:for="{{base}}" wx:key="type" class="card {{item.locked && !done ? 'locked' : ''}}">
+      <view class="title">{{item.index}}. {{item.label}} <text class="count">{{item.ready}} 张已归档</text></view>
+      <button wx:if="{{!done}}" class="{{item.locked ? '' : 'primary'}}" data-type="{{item.type}}" data-event="{{item.event_id}}" bindtap="shoot" disabled="{{busy || item.locked}}">
+        {{item.locked ? '先完成前一项' : item.ready ? '补拍一张' : '拍一张' + item.label}}
+      </button>
+      <template is="photos" data="{{photos: item.photos, busy, done}}" />
+    </view>
+    <button wx:if="{{state.phase === 'preparing'}}" class="primary" bindtap="depart" disabled="{{busy || !allBaseReady || state.pending_count || pending.length}}">三项已拍齐，提交并开始运输</button>
+    <view wx:if="{{state.phase === 'preparing'}}" class="hint">上一步照片归档成功，才会解锁下一步。三项都拍齐后再提交。</view>
+
+    <view class="section">每次开门、关门都拍</view>
+    <view class="hint">卸货、检查、特殊情况都一样；开门和关门属于同一次记录。</view>
+    <button wx:if="{{state.phase === 'transporting' && !activeDoor}}" class="primary" bindtap="startDoor" disabled="{{busy}}">新建一次开关门记录</button>
+    <view wx:if="{{state.phase === 'preparing'}}" class="hint">提交运输前三项照片后开启。</view>
+    <view wx:for="{{doors}}" wx:key="id" class="card">
+      <view class="title">{{item.name}} <text class="count">{{item.status === 'closed' ? '已保存' : '进行中'}}</text></view>
+      <view wx:if="{{!done}}" class="actions">
+        <button class="primary" data-event="{{item.id}}" data-type="DOOR_OPEN" bindtap="shoot" disabled="{{busy}}">{{item.openReady ? '补拍开门' : '① 拍开门'}}</button>
+        <button class="primary" data-event="{{item.id}}" data-type="DOOR_CLOSE" bindtap="shoot" disabled="{{busy || !item.openReady}}">{{item.closeReady ? '补拍关门' : '② 拍关门'}}</button>
+      </view>
+      <template is="photos" data="{{photos: item.photos, busy, done}}" />
+      <button wx:if="{{item.status === 'open'}}" class="primary" data-event="{{item.id}}" bindtap="finishDoor" disabled="{{busy || !item.canFinish}}">两类已拍齐，保存本次开关门</button>
+      <button wx:if="{{item.status === 'open' && item.empty}}" class="quiet" data-event="{{item.id}}" bindtap="cancelDoor" disabled="{{busy}}">误点了，取消这次空记录</button>
+    </view>
+
+    <view class="section">额外问题，随时记录</view>
+    <view wx:if="{{!done}}" class="card">
+      <textarea maxlength="300" placeholder="例如：发现外包装破损，请说明情况（选填）" value="{{note}}" bindinput="noteInput" disabled="{{busy}}" />
+      <button bindtap="saveIssue" disabled="{{busy}}">保存问题说明</button>
+      <button data-type="ISSUE" bindtap="shoot" disabled="{{busy}}">拍一张问题照片</button>
+    </view>
+    <view wx:for="{{issues}}" wx:key="id" class="card">
+      <view class="title">{{item.name}}</view>
+      <view class="note">{{item.note || '可补充文字说明或照片'}}</view>
+      <view wx:if="{{!done}}" class="actions">
+        <button data-event="{{item.id}}" bindtap="editIssue" disabled="{{busy}}">补充说明</button>
+        <button data-event="{{item.id}}" data-type="ISSUE" bindtap="shoot" disabled="{{busy}}">补拍照片</button>
+      </view>
+      <template is="photos" data="{{photos: item.photos, busy, done}}" />
+    </view>
+
+    <view class="card finish">
+      <view class="title">{{done ? '本趟已完成' : '最后一步：全部卸货完毕'}}</view>
+      <view class="hint">{{done ? '记录已保留。若误点完成，可以填写原因纠正。' : '最后一次卸货也要拍开门、关门。所有照片归档后，再确认完成运输。'}}</view>
+      <button wx:if="{{!done}}" class="primary" bindtap="complete" disabled="{{busy || !canComplete}}">全部卸货完毕，完成运输</button>
+      <button wx:else bindtap="reopen" disabled="{{busy}}">误点完成？填写原因纠正</button>
+    </view>
+  </block>
+</view>

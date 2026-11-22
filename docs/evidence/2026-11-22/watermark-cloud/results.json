@@ -1,0 +1,154 @@
+[
+  {
+    "name": "small",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "overlay",
+    "original": {
+      "width": 320,
+      "height": 240,
+      "orientation": 1
+    },
+    "output": {
+      "width": 320,
+      "height": 240,
+      "contentHeight": 240
+    },
+    "originalBytes": 16785,
+    "outputBytes": 25232,
+    "elapsedMs": 358
+  },
+  {
+    "name": "landscape",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "overlay",
+    "original": {
+      "width": 1600,
+      "height": 1000,
+      "orientation": 1
+    },
+    "output": {
+      "width": 1600,
+      "height": 1000,
+      "contentHeight": 1000
+    },
+    "originalBytes": 63643,
+    "outputBytes": 126836,
+    "elapsedMs": 366
+  },
+  {
+    "name": "portrait",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "overlay",
+    "original": {
+      "width": 1000,
+      "height": 1600,
+      "orientation": 1
+    },
+    "output": {
+      "width": 1000,
+      "height": 1600,
+      "contentHeight": 1600
+    },
+    "originalBytes": 52353,
+    "outputBytes": 97791,
+    "elapsedMs": 317
+  },
+  {
+    "name": "narrow",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "footer",
+    "original": {
+      "width": 96,
+      "height": 640,
+      "orientation": 1
+    },
+    "output": {
+      "width": 96,
+      "height": 975,
+      "contentHeight": 640
+    },
+    "originalBytes": 6653,
+    "outputBytes": 20476,
+    "elapsedMs": 264
+  },
+  {
+    "name": "panorama",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "footer",
+    "original": {
+      "width": 3200,
+      "height": 320,
+      "orientation": 1
+    },
+    "output": {
+      "width": 2000,
+      "height": 437,
+      "contentHeight": 200
+    },
+    "originalBytes": 96456,
+    "outputBytes": 136309,
+    "elapsedMs": 340
+  },
+  {
+    "name": "rotated",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "overlay",
+    "original": {
+      "width": 1200,
+      "height": 800,
+      "orientation": 6
+    },
+    "output": {
+      "width": 800,
+      "height": 1200,
+      "contentHeight": 1200
+    },
+    "originalBytes": 52973,
+    "outputBytes": 90092,
+    "elapsedMs": 320
+  },
+  {
+    "name": "waybill",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "footer",
+    "original": {
+      "width": 1400,
+      "height": 1900,
+      "orientation": 1
+    },
+    "output": {
+      "width": 1400,
+      "height": 2119,
+      "contentHeight": 1900
+    },
+    "originalBytes": 115501,
+    "outputBytes": 177349,
+    "elapsedMs": 319
+  },
+  {
+    "name": "large",
+    "status": "ready",
+    "runtime": "v20.19.3",
+    "layout": "overlay",
+    "original": {
+      "width": 6000,
+      "height": 4000,
+      "orientation": 1
+    },
+    "output": {
+      "width": 2000,
+      "height": 1333,
+      "contentHeight": 1333
+    },
+    "originalBytes": 311909,
+    "outputBytes": 150086,
+    "elapsedMs": 369
+  }
+]

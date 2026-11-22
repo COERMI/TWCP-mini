@@ -1,0 +1,9 @@
+{
+  "name": "listRecords",
+  "version": "1.0.0",
+  "description": "后台档案列表：分页 + 车牌/编号搜索 + 日期/状态筛选",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

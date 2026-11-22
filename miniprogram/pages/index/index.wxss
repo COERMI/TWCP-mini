@@ -1,0 +1,87 @@
+/* pages/index/index.wxss */
+.page {
+  padding-bottom: 60rpx;
+}
+
+.hero {
+  padding: 60rpx 40rpx 20rpx;
+}
+.hero-title {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.hero-sub {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: #888;
+}
+
+.field-label {
+  font-size: 28rpx;
+  color: #555;
+  margin-bottom: 16rpx;
+  font-weight: 600;
+}
+
+.plate-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 110rpx;
+  padding: 0 28rpx;
+  background: #f5f6f8;
+  border: 2rpx solid #e0e3e8;
+  border-radius: 16rpx;
+}
+.plate-value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 6rpx;
+}
+.plate-placeholder {
+  font-size: 34rpx;
+  color: #b0b4bb;
+}
+.plate-arrow {
+  font-size: 32rpx;
+  color: #999;
+}
+
+.field-tip {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.actions {
+  margin: 20rpx 24rpx;
+}
+
+.continue-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10rpx;
+}
+.continue-line {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.7;
+}
+.continue-actions {
+  margin-top: 24rpx;
+}
+.continue-btn {
+  text-align: center;
+  height: 88rpx;
+  line-height: 84rpx;
+}
+.continue-new {
+  margin-top: 16rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #888;
+  padding: 16rpx 0;
+}

@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-22T09:28:24.810Z",
+  "version": "transport-v1-workflow-1",
+  "checks": [
+    {
+      "check": "trusted-wechat-claim",
+      "passed": true
+    },
+    {
+      "check": "client-database-direct-read-denied",
+      "passed": true
+    },
+    {
+      "check": "base-order-enforced",
+      "passed": true
+    },
+    {
+      "check": "three-base-types-archived",
+      "passed": true
+    },
+    {
+      "check": "ready-processing-retry-idempotent",
+      "passed": true
+    },
+    {
+      "check": "original-download-exact-bytes",
+      "passed": true
+    },
+    {
+      "check": "waybill-derivative-is-real-footer-png",
+      "passed": true
+    },
+    {
+      "check": "waybill-content-pixels-preserved",
+      "passed": true
+    },
+    {
+      "check": "client-direct-archive-read-denied",
+      "passed": false
+    }
+  ],
+  "identity": "Trusted WeChat developer-tools context; no injected OPENID or business-auth bypass",
+  "scope": "Synthetic test data; does not substitute for physical camera, offline phone or second-user validation"
+}

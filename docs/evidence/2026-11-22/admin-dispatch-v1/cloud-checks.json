@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-22T11:39:04.960Z",
+  "checks": [
+    {
+      "check": "admin-creates-independent-trip",
+      "passed": true
+    },
+    {
+      "check": "create-retry-returns-same-trip-and-entry",
+      "passed": true
+    },
+    {
+      "check": "modified-retry-refused",
+      "passed": true
+    },
+    {
+      "check": "no-token-cannot-recover-entry",
+      "passed": true
+    },
+    {
+      "check": "expired-admin-cannot-recover-entry",
+      "passed": true
+    },
+    {
+      "check": "claimed-phone-trip-not-reissued",
+      "passed": true
+    },
+    {
+      "check": "unused-entry-can-be-revoked",
+      "passed": true
+    },
+    {
+      "check": "revoked-entry-not-reissued",
+      "passed": true
+    },
+    {
+      "check": "revoked-entry-visible-in-admin-list",
+      "passed": true
+    },
+    {
+      "check": "revoked-trip-retained-for-review",
+      "passed": true
+    }
+  ],
+  "scope": "Real dedicated test cloud. Creates one TEST trip and revokes its unused invitation. Existing phone-test trip is only read."
+}

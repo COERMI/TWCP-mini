@@ -1,0 +1,27 @@
+
+> transport-photo-archive-admin@1.0.0 build
+> vite build
+
+vite v5.4.21 building for production...
+<script src="./config.js"> in "/index.html" can't be bundled without type="module" attribute
+transforming...
+✓ 1636 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                            0.49 kB │ gzip:   0.42 kB
+dist/assets/Login-PxHpJNs_.css             0.44 kB │ gzip:   0.26 kB
+dist/assets/RecordList-9krnnEaa.css        1.62 kB │ gzip:   0.56 kB
+dist/assets/RecordDetail-B3-V7b3T.css      2.36 kB │ gzip:   0.78 kB
+dist/assets/index-m5z3lL2S.css           363.41 kB │ gzip:  48.55 kB
+dist/assets/workflow-CuEXJk9p.js           0.88 kB │ gzip:   0.77 kB
+dist/assets/admin-BLKVDQgW.js              1.53 kB │ gzip:   0.86 kB
+dist/assets/Login-pgkcXhBe.js              1.89 kB │ gzip:   1.19 kB
+dist/assets/RecordDetail-DHHZtC7f.js       8.06 kB │ gzip:   3.83 kB
+dist/assets/RecordList-CTjo7dQ3.js        12.68 kB │ gzip:   5.87 kB
+dist/assets/index-XmNWgI7R.js          2,173.73 kB │ gzip: 640.03 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.40s

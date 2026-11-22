@@ -1,0 +1,11 @@
+{
+  "name": "uploadPhoto",
+  "version": "1.0.0",
+  "description": "上传照片：下载原图 -> 天气/逆地理 -> 生成水印 -> 关联事件 -> 写入照片记录",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "sharp": "^0.33.2",
+    "axios": "^1.6.8"
+  }
+}

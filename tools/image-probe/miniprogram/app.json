@@ -1,0 +1,9 @@
+{
+  "pages": ["pages/probe/index"],
+  "window": {
+    "navigationBarTitleText": "图片实拍测试",
+    "navigationBarBackgroundColor": "#175b46",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f3f5f1"
+  }
+}

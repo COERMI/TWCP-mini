@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-22T10:41:08.748Z",
+  "previewCompiled": true,
+  "totalBytes": 38216,
+  "previewLogConfirmed": true,
+  "phoneWorkflowVerified": true,
+  "nativeUploadDomainVerified": false,
+  "blocker": null,
+  "existingInvitationPreserved": true,
+  "uploadDomainConfigured": true,
+  "uploadDomainVerifiedInPlatform": true,
+  "qrGeneratedAt": "2026-11-22T10:39:33.468Z",
+  "userReportedNoErrors": true,
+  "phoneWorkflowVerificationMethod": "User feedback followed by independent cloud metadata: completed trip, 5 ready photos, no pending photos, three base types and one completed door group.",
+  "nativeUploadDomainVerificationScope": "Developer-tools automated native-upload check was not executed because its automation connection failed; physical-phone feedback is recorded separately.",
+  "developerToolsNativeUploadAutomatedTestVerified": false,
+  "remainingUnverified": [
+    "offline recovery on physical devices",
+    "two real WeChat users",
+    "cross-device photo readability",
+    "developer-tools native upload automation"
+  ],
+  "feedbackEvidence": "../admin-v1/phone-feedback.json"
+}
