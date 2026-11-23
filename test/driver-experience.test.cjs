@@ -79,3 +79,28 @@ test('分享入口不自动领取，确认车牌后才进入；没有入口不�
   assert.equal(calls, 1);
   assert.equal(page.data.claimed, false);
 });
+
+test('固定管理卡片独立于司机邀请，即使选中运输也只打开管理登录页', () => {
+  const page = load('dispatch');
+  page.token = 'private-admin-token'; page.selection = { invite: 'private-invite' };
+  const card = page.onShareAppMessage({ target: { dataset: { kind: 'admin' } } });
+  assert.equal(card.path, '/pages/dispatch/index');
+  assert(!JSON.stringify(card).includes('private-'));
+});
+test('手机新增响应丢失后重试沿用请求，恢复草稿不重复建档', async () => {
+  const storage = new Map(), calls = [];
+  const wx = { setStorageSync: (k,v) => storage.set(k, structuredClone(v)), removeStorageSync: k => storage.delete(k) };
+  const page = load('dispatch', { requestId: () => 'stable-test-request', call: async input => {
+    calls.push(input); if (calls.length === 1) throw Error('lost response');
+    return { record: { id: 'trip-test', record_no: 'TEST001' } };
+  } }, wx);
+  page.token = 'test-token'; page.setData({ plate_number: '粤B12345', ship_date: '2026-11-24', description: '测试运输' });
+  page.search = async () => {}; page.select = async () => {};
+  await page.create();
+  assert.equal(page.data.createLocked, true);
+  assert(storage.has('v1_admin_create_draft'));
+  await page.create();
+  assert.equal(calls[0].request_id, calls[1].request_id);
+  assert.equal(page.data.createLocked, false);
+  assert(!storage.has('v1_admin_create_draft'));
+});

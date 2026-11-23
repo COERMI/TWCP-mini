@@ -1,4 +1,4 @@
 {
-  "pages": ["pages/entry/index", "pages/trip/index", "pages/dispatch/index", "pages/capture/index"],
+  "pages": ["pages/dispatch/index", "pages/entry/index", "pages/trip/index", "pages/capture/index"],
   "window": { "navigationBarTitleText": "本趟运输", "navigationBarBackgroundColor": "#f5f7f6", "navigationBarTextStyle": "black" }
 }
