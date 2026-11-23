@@ -34,21 +34,21 @@
         <el-table-column label="发货日期 / 方向" min-width="210"><template #default="{row}"><div>{{ row.ship_date || '—' }}</div><span class="muted">{{ row.description || '—' }}</span></template></el-table-column>
         <el-table-column label="创建时间（北京时间）" min-width="205">
           <template #header>
-            <span class="time-heading">创建时间
+            <span class="time-heading" title="北京时间">创建时间
               <button class="sort-button" :class="{ active: query.sort === 'created_desc' }"
                 :aria-pressed="query.sort === 'created_desc'" aria-label="按创建时间从新到旧排序"
-                title="按创建时间从新到旧排序" :disabled="loading" @click="sortBy('created_desc')">↓</button>
-            </span><span class="timezone">北京时间</span>
+                title="按创建时间从新到旧排序" :disabled="loading" @click="sortBy('created_desc')"><span class="sort-caret" aria-hidden="true"></span></button>
+            </span>
           </template>
           <template #default="{row}">{{ formatDateTime(row.created_at) }}</template>
         </el-table-column>
         <el-table-column label="最近更新时间（北京时间）" min-width="205">
           <template #header>
-            <span class="time-heading">最近更新时间
+            <span class="time-heading" title="北京时间">最近更新时间
               <button v-if="query.source === 'v1'" class="sort-button" :class="{ active: query.sort === 'updated_desc' }"
                 :aria-pressed="query.sort === 'updated_desc'" aria-label="按最近更新时间从新到旧排序"
-                title="按最近更新时间从新到旧排序" :disabled="loading" @click="sortBy('updated_desc')">↓</button>
-            </span><span class="timezone">北京时间</span>
+                title="按最近更新时间从新到旧排序" :disabled="loading" @click="sortBy('updated_desc')"><span class="sort-caret" aria-hidden="true"></span></button>
+            </span>
           </template>
           <template #default="{row}">{{ formatDateTime(row.updated_at || row.created_at) }}</template>
         </el-table-column>
@@ -110,6 +110,6 @@ function logout() { clearToken(); router.replace('/login'); }
 onMounted(load);
 </script>
 <style scoped>
-.time-heading{display:inline-flex;align-items:center;gap:6px}.timezone{display:block;font-size:12px;font-weight:400;color:#758378}.sort-button{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;padding:0;border:1px solid #c8d3cb;border-radius:5px;background:#fff;color:#66776d;font-size:17px;cursor:pointer}.sort-button.active{background:#176047;border-color:#176047;color:#fff}.sort-button:focus-visible{outline:2px solid #176047;outline-offset:2px}.sort-button:disabled{cursor:wait;opacity:.6}
+.time-heading{white-space:nowrap}.sort-button{display:inline-block;vertical-align:middle;width:16px;height:14px;margin:0 0 0 3px;padding:0;border:0;background:transparent;line-height:0;cursor:pointer;color:#c0c4cc}.sort-caret{display:inline-block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid currentColor}.sort-button.active{color:var(--el-color-primary)}.sort-button:hover{color:var(--el-color-primary)}.sort-button:focus-visible{outline:1px solid var(--el-color-primary);outline-offset:1px}.sort-button:disabled{cursor:wait;opacity:.6}
 .page{padding:32px;max-width:1600px;margin:auto}.heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;gap:16px;flex-wrap:wrap}.heading-actions{display:flex;gap:12px}.eyebrow{color:#65776c;font-size:14px}h1{font-size:27px;margin:10px 0;color:#213e30}h2{font-size:18px;margin:0}.filter-card{margin-bottom:20px}.results{margin-top:20px}.results-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px;color:#67786c}.muted{font-size:12px;color:#758378}.pagination{display:flex;justify-content:flex-end;margin-top:24px}.el-alert{margin-top:16px}@media(max-width:700px){.page{padding:16px}h1{font-size:21px}.results-head{display:block}.results-head span{display:block;margin-top:12px}.pagination{overflow:auto;justify-content:flex-start}}
 </style>
