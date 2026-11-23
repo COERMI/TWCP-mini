@@ -22,6 +22,10 @@ test('预览只在独立工程写本趟目标，保留域名校验和既有手�
   assert(result.success); assert.equal(result.data.record_id,invitation.record.id); assert.equal(result.data.preview_only,true);
   const project=args[args.indexOf('--project')+1];
   assert.equal(path.basename(project),'dispatch-phone-project');
+  const manifest = JSON.parse(await fs.readFile(path.join(project, 'miniprogram/app.json'), 'utf8'));
+  assert.equal(manifest.pages[0], 'pages/entry/index');
+  assert(manifest.pages.includes('pages/dispatch/index'));
+  assert.equal(JSON.parse(await fs.readFile(path.resolve(__dirname, '../tools/workflow-probe/miniprogram/app.json'), 'utf8')).pages[0], 'pages/dispatch/index');
   const target=await fs.readFile(path.join(project,'miniprogram/target.js'),'utf8');
   assert(target.includes(invitation.invite)); assert(!target.includes('ADMIN_SECRET'));
   assert.equal(JSON.parse(await fs.readFile(path.join(project,'project.config.json'),'utf8')).setting.urlCheck,true);

@@ -30,6 +30,12 @@ function createPreviewer({ root = privateRoot, run = ide } = {}) {
       const project = path.join(root, 'dispatch-phone-project');
       await fs.mkdir(project, { recursive: true });
       await fs.cp(path.resolve(__dirname, '../tools/workflow-probe'), project, { recursive: true });
+      // A per-trip test QR must open the driver entry even though the normal
+      // application now starts at the independent administrator homepage.
+      const manifestPath = path.join(project, 'miniprogram/app.json');
+      const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+      manifest.pages = ['pages/entry/index', ...manifest.pages.filter(page => page !== 'pages/entry/index')];
+      await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
       await fs.writeFile(path.join(project, 'miniprogram/target.js'),
         `module.exports = ${JSON.stringify({ invite: invitation.invite, record_id: invitation.record.id })};\n`);
       const appPath = path.join(project, 'miniprogram/app.js');

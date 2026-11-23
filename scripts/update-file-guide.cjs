@@ -28,6 +28,8 @@ const scripts = {
   'update-file-guide.cjs':'重新生成这份逐文件用途表；只修改说明文档',
 };
 const docs = {
+  'V1产品介绍与使用说明.html':'可离线打开及打印的首次汇报与分角色使用教程；明确已实现和待验收状态',
+  'V1落实核对与上线清单.md':'逐项核对已确认需求、入口修复证据、上线门槛及月底试运行安排',
   '司机体验优化实施说明.md':'本轮三步拍照、开关门自动保存、微信卡片和两版水印说明，含真机待验项目',
   'QUICK_START_FOR_OWNER.md':'负责人日常操作说明；不懂代码先看这份',
   '当前进度与下一步行动.md':'最新进展和接下来要做什么；优先看顶部',
@@ -158,7 +160,7 @@ function describe(file) {
   if (name === '.gitignore') return 'Git上传排除规则：私人配置、依赖、日志和本机图片等不提交';
   if (file === '.gitattributes') return '统一代码换行规则，避免Windows与其他电脑产生无意义差异';
   if (file === 'cloudbaserc.json') return '历史部署清单，尚未覆盖新版；不要据此批量部署';
-  if (file === 'project.config.json') return '微信主项目配置；已指向新版司机页面，AppID公开，私人设置另存且不上传';
+  if (file === 'project.config.json') return '微信主项目配置；指向新版小程序，默认管理首页，司机通过本趟邀请进入；私人设置不上传';
   if (name === 'package.json') return '该子项目的依赖名称、版本和可执行命令';
   if (name === 'package-lock.json') return '锁定该子项目实际依赖版本，由npm维护，不要手工修改';
   if (file.startsWith('scripts/')) return scripts[name];
@@ -211,8 +213,8 @@ function section(file) {
   if (file.startsWith('cloudfunctions/transportV1/')) return '云端业务：当前新版';
   if (file.startsWith('cloudfunctions/imagePipelineProbe/')) return '图片渲染器、试件与字体';
   if (file.startsWith('cloudfunctions/')) return '既有云函数：保留兼容与登录';
-  if (file.startsWith('tools/')) return '手机测试工程：并非正式发布包';
-  if (file.startsWith('miniprogram/')) return '旧司机主包：尚未切换';
+  if (file.startsWith('tools/')) return '新版手机源码与测试工程：当前主项目已指向新版，尚未正式发布';
+  if (file.startsWith('miniprogram/')) return '旧司机主包：保留参考，已不作为当前入口';
   if (file.startsWith('scripts/')) return '工具脚本：执行前看影响';
   if (file.startsWith('test/')) return '自动测试：供开发人员运行';
   if (file.startsWith('docs/prototype/')) return '交互原型：只作演示';
@@ -232,7 +234,7 @@ for (const file of unique) {
   if (!groups.has(group)) groups.set(group,[]);
   groups.get(group).push({file,purpose});
 }
-let text=`# 文件用途说明\n\n更新日期：2026-11-22。覆盖本次Git非忽略清单中的${unique.length}个文件；私人配置和本机照片不在此上传清单中。\n\n## 给代码小白的读法\n\n- 你日常只需要操作页面和阅读文档，不需要逐个修改代码。\n- 想找某个文件，用搜索功能查完整文件名；下面按角色分组逐个列出用途。\n- \`.js/.cjs\`是逻辑，\`.vue\`是总部界面，\`.wxml\`是微信页面结构，\`.wxss/.css\`是外观，\`.json\`是配置，\`.md\`是说明。\n- “旧版”“原型”“试件”已经明确标出；它们存在不代表当前正在正式使用。\n- 工具脚本可能写测试数据、图片或索引；不要因为名字有check/verify就自行运行。\n- 上传GitHub只保存版本，不执行页面发布、云部署或数据迁移。\n\n此表由\`node scripts/update-file-guide.cjs\`生成。开发人员新增文件时应补充用途映射再更新；命令只改本说明，不改业务数据。\n\n`;
+let text=`# 文件用途说明\n\n更新日期：2026-11-24。覆盖本次Git非忽略清单中的${unique.length}个文件；私人配置和本机照片不在此上传清单中。\n\n## 给代码小白的读法\n\n- 你日常只需要操作页面和阅读文档，不需要逐个修改代码。\n- 想找某个文件，用搜索功能查完整文件名；下面按角色分组逐个列出用途。\n- \`.js/.cjs\`是逻辑，\`.vue\`是总部界面，\`.wxml\`是微信页面结构，\`.wxss/.css\`是外观，\`.json\`是配置，\`.md\`是说明。\n- “旧版”“原型”“试件”已经明确标出；它们存在不代表当前正在正式使用。\n- 工具脚本可能写测试数据、图片或索引；不要因为名字有check/verify就自行运行。\n- 上传GitHub只保存版本，不执行页面发布、云部署或数据迁移。\n\n此表由\`node scripts/update-file-guide.cjs\`生成。开发人员新增文件时应补充用途映射再更新；命令只改本说明，不改业务数据。\n\n`;
 for(const [group,rows] of groups){text+=`## ${group}\n\n|文件|作用|\n|---|---|\n`;for(const row of rows)text+=`|\`${row.file}\`|${row.purpose}|\n`;text+='\n';}
 text+='## 为什么有些文件在GitHub里看不到\n\n`.env.local`、`project.private.config.json`、真实邀请`target.js`、试件访问凭据、二维码、平台截图、实拍照片、依赖目录和构建输出均按上传排除规则保留本机。它们没有被当作普通源码公开；详细范围见`GITHUB同步说明.md`。云端数据库和归档照片也不会随Git同步。\n';
 fs.writeFileSync(path.join(root,'docs/文件用途说明.md'),text);

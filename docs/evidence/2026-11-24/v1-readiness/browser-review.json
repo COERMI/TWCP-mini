@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-23T17:30:49.124Z",
+  "artifact": "docs/V1产品介绍与使用说明.html",
+  "checks": {
+    "desktopViewport": "1440x1000",
+    "mobileViewport": "390x844",
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "pdfPages": 7,
+    "pdfReview": "All pages rendered through Poppler; final contact-sheet and Chinese text visually reviewed."
+  },
+  "scope": "Documentation rendering only; no new WeChat phone acceptance or production release."
+}

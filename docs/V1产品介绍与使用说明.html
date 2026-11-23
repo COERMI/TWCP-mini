@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>运输影像管理 · V1 产品介绍与使用说明</title>
+<style>
+:root{--ink:#18332f;--muted:#576d68;--green:#16745e;--line:#dbe5e0;--bg:#f2f5f1}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "Microsoft YaHei","PingFang SC",sans-serif}nav{position:fixed;inset:0 auto 0 0;width:225px;padding:32px 23px;background:#153e34;color:white}nav strong{display:block;font-size:21px;margin-bottom:20px}nav a{display:block;color:#d6e7df;text-decoration:none;padding:10px 0;font-size:14px}nav button{margin-top:26px;background:#fff;color:#153e34;border:0;padding:10px 14px;border-radius:6px;cursor:pointer}main{max-width:1210px;margin:0 auto;padding:32px 35px 70px 260px}section{background:white;margin:0 0 26px;padding:38px;border:1px solid var(--line);border-radius:12px;scroll-margin-top:20px}.eyebrow{color:var(--green);font-size:13px;font-weight:700;letter-spacing:2px}h1{font-size:38px;line-height:1.35;margin:18px 0}h2{font-size:26px;margin:0 0 20px}h3{font-size:18px;margin:22px 0 8px}p{margin:10px 0}.lead{font-size:20px;color:var(--muted)}.badge{display:inline-block;background:#edf4ef;color:#255b47;padding:4px 10px;font-size:13px;border-radius:4px}.note{border-left:4px solid #c28f35;background:#fcf8ee;padding:14px 18px;margin:20px 0}.good{border-color:var(--green);background:#edf6f1}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0}.card{border:1px solid var(--line);padding:18px;border-radius:8px}.card b{font-size:20px;display:block}.card p{font-size:14px}.flow{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.flow span{padding:9px 12px;background:#eaf3ee;border-radius:6px;font-weight:bold}.flow i{align-self:center;font-style:normal;color:#76978a}table{border-collapse:collapse;width:100%;font-size:14px;margin:16px 0}th,td{border:1px solid var(--line);padding:12px 13px;text-align:left;vertical-align:top}th{background:#eef3f0}ol,ul{padding-left:24px}li{margin:9px 0}.muted,small{color:var(--muted)}.step{display:inline-block;background:var(--green);color:white;width:27px;height:27px;text-align:center;line-height:27px;border-radius:50%;margin-right:9px}footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:26px}.talk{font-size:18px;line-height:2;border-left:3px solid var(--green);padding-left:20px}.checklist li{list-style-type:"□  "}a{color:var(--green)}@media(max-width:900px){nav{position:static;width:auto;padding:18px}nav a{display:inline-block;padding:7px 10px}nav strong{margin:0}nav button{margin:5px}main{padding:16px}section{padding:24px}.grid{grid-template-columns:1fr}h1{font-size:30px}}@media print{@page{size:A4;margin:16mm}body{background:white;font-size:10pt;line-height:1.6}nav{display:none}main{max-width:none;padding:0;margin:0}section{border:0;border-radius:0;padding:0;margin:0;break-before:page}section:first-child{break-before:auto}h1{font-size:28pt}h2{font-size:19pt}h3{font-size:12pt}.lead{font-size:14pt}.talk{font-size:12pt}.grid{gap:10px}.card{padding:10px}.card b{font-size:13pt}.card p{font-size:10pt}table{font-size:9pt}td,th{padding:7px}tr,.card,.note{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit;text-decoration:none}footer{font-size:8pt}}
+@media print{.grid{grid-template-columns:repeat(3,1fr)}h1{margin:12px 0}h3{margin:16px 0 8px}.note{margin:12px 0;padding:10px 14px}table{margin:12px 0}td,th{padding:6px}footer{margin-top:12px;padding-top:8px}.inputs{gap:5px}.inputs input,.inputs select{padding:2px}}</style></head><body>
+<nav><strong>运输影像管理</strong><small style="color:#c5dacf">V1 · 首次汇报 / 使用说明</small><a href="#intro">01 产品解决什么问题</a><a href="#status">02 已实现与待交付</a><a href="#mobile">03 手机管理端</a><a href="#driver">04 司机拍照端</a><a href="#desktop">05 电脑管理端</a><a href="#faq">06 常见问题</a><a href="#report">07 汇报与验收</a><button onclick="window.print()">打印 / 保存为 PDF</button></nav>
+<main>
+<section id="intro"><div class="eyebrow">PRODUCT GUIDE / V1</div><h1>一趟运输，一份影像档案。</h1><p class="lead">让司机按顺序拍照，让管理人员按车、按趟找到记录。</p><p><span class="badge">2026 年 11 月 24 日 · 北京时间</span> <span class="badge">测试实现版 · 尚未正式发布</span></p>
+<div class="grid"><div class="card"><b>司机：照着拍</b><p>先核对车牌，完成运输前三项；每次开关门留照片，卸货完毕再结束。</p></div><div class="card"><b>手机管理：随手发</b><p>独立管理入口用于新增运输、查询列表、选择本趟后分享司机卡片。</p></div><div class="card"><b>电脑管理：集中查</b><p>按车牌、编号和时间找运输，集中查看原图、水印图及过程记录。</p></div></div>
+<h3>一条完整业务流程</h3><div class="flow"><span>管理员建档</span><i>→</i><span>分享本趟卡片</span><i>→</i><span>司机确认车牌</span><i>→</i><span>运输前 3 项</span><i>→</i><span>每次开关门</span><i>→</i><span>全部卸货完成</span></div>
+<p>同一辆车下次运输要另建一趟。司机重新打开原卡片时接续原趟，不必寻找历史入口，也不会自动切到“最新的一趟”。问题反馈可在现场另行记录。</p>
+<div class="note">当前产品用于照片采集和过程查询。它不自动证明照片真实、不代替调度或业务判断；定位、天气和全新水印样式尚未全部交付。</div>
+<footer>本文按当前源码与已有测试证据编写。流程图是说明示意，不是发布版截图。后续验收通过后应更新版本状态。</footer></section>
+<section id="status"><div class="eyebrow">DELIVERY STATUS</div><h2>已经能做什么，还差什么</h2>
+<table><thead><tr><th>项目</th><th>当前状态</th><th>汇报时怎么说</th></tr></thead><tbody>
+<tr><td>三项必拍、开关门、问题、运输完成</td><td>已实现；已有整趟测试证据</td><td>核心流程已在测试环境跑通。</td></tr>
+<tr><td>电脑建档、查询、照片详情、双时间排序</td><td>已实现；本机后台可用</td><td>可展示管理流程；公网入口待部署。</td></tr>
+<tr><td>固定手机管理入口、手机建档和分享</td><td>代码及本地相关测试完成</td><td>仍需手机管理者与接收司机联合验收。</td></tr>
+<tr><td>时间 / 定位 / 天气</td><td>设备拍摄时间及服务器接收时间已记录；定位天气未接入</td><td>不能把演示字段当作真实采集。</td></tr>
+<tr><td>水印新样式</td><td>有覆盖式、页脚式两个候选；现网测试仍用现行版</td><td>需选择一个样式，实拍确认清晰度再替换。</td></tr>
+<tr><td>半年保存与备份恢复</td><td>待明确保存口径、验证完整恢复与实施策略</td><td>半年保存是待确认的交付约定，不是现成自动删除功能。</td></tr>
+<tr><td>正式上线</td><td>尚未完成</td><td>还要完成手机验收、公网后台、平台审核与发布准备。</td></tr>
+</tbody></table>
+<div class="note good">本次复核：119 项新版自动化测试通过，电脑后台构建成功。测试通过不能替代手机实操或正式发布。</div>
+<h3>首版先把范围收住</h3><p>主线是“建档 → 发入口 → 按要求留照片 → 查询归档”。复杂防作弊、自动识别、复杂角色、统计报表和性能专项可作为第二版讨论。基本访问控制、备份及上线验收应在首版落实。</p>
+<footer>详细逐项核对及本批入口修复见《V1落实核对与上线清单.md》。</footer></section>
+<section id="mobile"><div class="eyebrow">FOR DISPATCHERS / MOBILE</div><h2>手机管理端：新增、查询、发给司机</h2>
+<div class="note">本页说明的是已实现但待真机验收的手机管理流程。正式版本默认打开管理页；当前测试版本能否进入还取决于预览/体验权限。正式卡片需在平台发布条件满足后交付。</div>
+<h3><span class="step">1</span>打开固定管理入口并登录</h3><p>打开管理卡片，进入“运输管理”。输入管理员账号和密码；登录过期后重新登录。管理入口与具体运输无关，可以留作常用入口。</p>
+<h3><span class="step">2</span>创建本趟运输</h3><p>点“＋ 新增运输”，填车牌、发货日期、装货地 / 目的地说明，批次选填。核对后点“创建本趟运输”。每次运输单独创建，不能复用上一趟。</p>
+<p class="muted">若提示“上次创建结果待确认”，点“重试并确认创建结果”。系统沿用原请求，避免网络中断造成重复建档。</p>
+<h3><span class="step">3</span>核对并分享司机卡片</h3><p>找到对应运输，点“选择并发给司机”。核对车牌、日期和说明，再点“发给司机”，在微信中选择正确联系人并确认发送。</p>
+<table><thead><tr><th>按钮</th><th>接收者打开后</th><th>使用场景</th></tr></thead><tbody><tr><td>分享固定管理入口</td><td>管理首页 / 登录</td><td>交给管理人员，不携带管理员登录凭据</td></tr><tr><td>发给司机</td><td>所选这一趟的车牌确认入口</td><td>交给负责该趟的司机，必须核对车牌</td></tr></tbody></table>
+<h3>查询已有运输</h3><p>输入车牌或运输编号，点“查询运输”。可切“全部运输 / 待发给司机”，按“创建最新 / 更新最新”排序，使用上一页、下一页查找。</p>
+<p>当前只支持为尚未被司机确认、未停用且有效的入口重新选择分享。已确认的司机从原卡片继续。详细查图、原图水印切换与纠正记录查看以电脑端为主。</p>
+<footer>暂不包含手机端完整照片管理、批量导出或多个管理员角色权限配置。</footer></section>
+<section id="driver"><div class="eyebrow">FOR DRIVERS</div><h2>司机端：按提示拍，等成功再继续</h2>
+<h3><span class="step">1</span>先确认是自己的车</h3><p>打开管理员发来的本趟卡片，核对车牌与运输信息。车牌不对就点对应提示并联系管理员重发，不能为了继续拍照而确认错误车牌。</p>
+<h3><span class="step">2</span>按三步进度完成运输前照片</h3><div class="flow"><span>① 货运单</span><i>→</i><span>② 货物码放</span><i>→</i><span>③ 装好的车厢</span></div>
+<p>拍清运单正文、货物摆放和整体装车情况。每一项等待上传、水印处理与归档成功，再进入下一项。取景边框只是提示，重要文字不要靠近底部水印区域。</p><p>三项齐全后点“开始运输”，进入途中记录。拍完不等于已经传好；出现待处理或失败提示时，先完成重试。</p>
+<h3><span class="step">3</span>每次开门、关门都拍</h3><p>每次开门点“拍开门照片”，按现场要求拍摄；关门时拍对应关门照片。关门照片归档成功后，本次开关门记录自动保存。无论卸货还是其他原因，都要留本次记录。</p>
+<h3><span class="step">4</span>有问题就补充记录</h3><p>问题反馈可填写文字并配照片。需要补拍时展开“本趟照片记录 / 补拍”，选择对应项目；基础项目最后一张有效照片需要先补拍成功，才能移除旧照片。</p>
+<h3><span class="step">5</span>全部卸货后完成运输</h3><p>确认这趟全部卸货完毕，再执行完成运输。一次关门不会自动结束整趟；如仍有待上传内容，按页面提示先处理。</p>
+<div class="note">网络不好时保留当前微信及本机资料，恢复网络后从原卡片继续并重试。当前没有“退出微信也一定会自动上传”的保证，不要为重试重新创建一趟。</div>
+<footer>现场拍摄请在安全停靠、允许操作手机时进行。不要在驾驶中操作。</footer></section>
+<section id="desktop"><div class="eyebrow">FOR OPERATIONS / DESKTOP</div><h2>电脑管理端：找到运输，核对照片</h2>
+<h3>入口与登录</h3><p>目前使用实施电脑上的本机后台，由实施人员启动后打开。正式公网地址尚未交付，不能把本机地址发给其他设备当作正式入口。账号由负责人单独交接，不写在卡片或教程里。</p>
+<h3>运输列表</h3><ol><li>进入新版运输范围，通过车牌、运输编号、状态等条件查询。旧数据在旧记录范围内查看。</li><li>“创建时间”旁的小箭头：按新建时间从新到旧显示。</li><li>“最近更新时间”旁的小箭头：按最近发生更新的记录从新到旧显示。想找刚上传照片的运输时，用这个排序。</li><li>列表日期筛选按<strong>创建日期</strong>，不会因切换更新时间排序自动变成“上传日期筛选”。查不到旧趟的新上传时，先清空日期条件。</li><li>进入“查看本趟”；返回列表后保留原筛选及排序条件。</li></ol>
+<h3>本趟详情</h3><p>查看运输状态、基础资料提交时间、完成时间、有效照片数和待处理数。按运输前项目、每次开关门和问题记录核对照片。</p>
+<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody><tr><td>刷新本趟状态</td><td>司机刚上传后，重新获取记录与处理状态。</td></tr><tr><td>查看 / 切换原图</td><td>放大照片，切换原图和水印图；必要时用原图检查细字。</td></tr><tr><td>刷新链接</td><td>图片临时访问链接失效时重新获取，不必要求司机重拍。</td></tr><tr><td>显示取消和移除记录</td><td>查看历史纠正信息；“移除”不表示后台原文件已物理删除。</td></tr></tbody></table>
+<h3>电脑建档与发错入口</h3><p>也可在电脑端点“新建本趟运输”。当前电脑入口仍提供测试二维码；实际聊天卡片分享以手机管理端为目标。车牌发错且司机未确认时，停用错误入口，再用正确车牌建档。已经确认的运输不要随意重派，交给实施人员处理。</p>
+<footer>建议以运输编号核对同一趟，不只看车牌；同一辆车可以有多趟不同记录。</footer></section>
+<section id="faq"><div class="eyebrow">HELP & LIMITS</div><h2>遇到这些情况怎么办</h2>
+<table><thead><tr><th>情况</th><th>先这样处理</th></tr></thead><tbody>
+<tr><td>今天拍的照片在列表找不到</td><td>确认新版范围，清空创建日期筛选，点更新时间小箭头，再按车牌 / 编号查找并刷新详情。</td></tr>
+<tr><td>拍照上传慢</td><td>区分“上传中”与“生成水印并归档”；不要连续重复拍同一项。记录手机网络、照片项目和等待时间供排查。正式发布不会天然消除处理等待。</td></tr>
+<tr><td>手机中断或误关页面</td><td>同一手机打开原卡片接续，查看待处理任务并重试；避免清除微信缓存或换手机后期待本地待上传照片自动出现。</td></tr>
+<tr><td>二维码过期</td><td>由实施人员重新生成测试预览；正式日常入口以小程序卡片为目标。二维码有效期和运输邀请有效期是不同问题。</td></tr>
+<tr><td>照片打不开</td><td>先刷新状态及图片链接。若持续失败，记录运输编号、照片项目和提示。</td></tr>
+<tr><td>没有位置、天气</td><td>当前未接入，属于待确定交付项，不能拿演示水印里的文字当真实采集。</td></tr>
+<tr><td>时间是否准确</td><td>拍摄时间取自手机，另记录服务器接收时间；水印按北京时间显示。设备时间异常需核查，不承诺防篡改认证。</td></tr>
+<tr><td>换司机 / 误点完成</td><td>联系管理员核对本趟编号，按受控纠正流程处理，不能把旧入口随意发给另一司机重新确认。</td></tr>
+</tbody></table>
+<h3>反馈问题时给三条信息</h3><p>① 哪一趟运输编号；② 点了哪个按钮、在什么步骤；③ 页面提示及发生时间。可以补截图，但运单、司机邀请、账号和真实照片不要上传到公开代码仓库。</p>
+<div class="note">照片计划保存多久、到期是否导出、何时删除，需要公司确定。当前不能承诺“保存半年后自动清理”；逻辑移除也不会自动降低存储费用。</div>
+</section>
+<section id="report"><div class="eyebrow">FIRST REPORT / ACCEPTANCE</div><h2>第一次汇报：先讲价值，再讲边界</h2>
+<p class="talk">“这版主要把一趟运输的照片集中起来：管理人员先建档，司机按三项顺序拍照，途中每次开关门留记录，最后确认卸货完成。电脑端可以按车、按趟和更新时间查询。核心流程已在测试环境跑通，手机管理入口已开发，下一步做分享实测和正式上线准备。先用少量运输验证，再决定第二版增加哪些功能。”</p>
+<h3>建议 8 分钟演示顺序</h3><ol><li><strong>1 分钟：</strong>讲清“一趟一档”和三个使用角色。</li><li><strong>3 分钟：</strong>用专门演示趟展示车牌确认、三步拍照、开关门与完成。演示数据明确标注，避免影响业务记录。</li><li><strong>2 分钟：</strong>电脑按更新时间找到同一趟，打开水印图和原图。</li><li><strong>2 分钟：</strong>展示待验收清单、试运行安排和费用方案。未验证的分享功能用本说明讲解，不装作已现场通过。</li></ol>
+<h3>请老板确定的四件事</h3><ul><li>指定一位懂现场流程的验收人，确认正常一趟的照片数量及异常情况。</li><li>确认首批试运行车辆、每天运输趟数和正式开始日期。</li><li>确认照片保存口径：每张至少半年，还是产季结束后再保留一段时间。</li><li>确认首版范围、开发费、运行费、维护方式及账户归属。</li></ul>
+<h3>试运行验收单</h3><ul class="checklist"><li>固定管理卡片打开登录；司机卡片打开正确车牌。</li><li>三项按顺序解锁；每次开关门可查；问题反馈与完成运输正确。</li><li>断网重试不重复建档；错误车牌与不该查看的运输被阻止。</li><li>电脑找得到本趟全部照片，待处理数归零；水印清晰可读。</li><li>公网访问、备份恢复、账单提醒和发布状态均有明确记录。</li></ul>
+<footer>资料负责人：项目实施方。待业务验收人补充姓名与验收日期后形成最终交付记录。预算及报价另见本机商务草案。</footer></section>
+</main></body></html>

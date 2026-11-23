@@ -5,6 +5,10 @@ const invite = JSON.parse(fs.readFileSync(path.join(target, 'driver-target.priva
 if (!/^[a-f0-9]{64}$/.test(invite.invite) || !/^trip_[a-f0-9]{40}$/.test(invite.record_id)) throw new Error('Invalid driver test target');
 const phone = path.join(target, 'workflow-phone-project');
 fs.cpSync(path.resolve(__dirname, '../tools/workflow-probe'), phone, { recursive: true });
+const manifestPath = path.join(phone, 'miniprogram/app.json');
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+manifest.pages = ['pages/entry/index', ...manifest.pages.filter(page => page !== 'pages/entry/index')];
+fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 fs.writeFileSync(path.join(phone, 'miniprogram/target.js'), `module.exports = ${JSON.stringify(invite)};\n`);
 const appPath = path.join(phone, 'miniprogram/app.js');
 fs.writeFileSync(appPath, fs.readFileSync(appPath, 'utf8').replace('App({', "App({\n  globalData: { testTarget: require('./target') },"));
