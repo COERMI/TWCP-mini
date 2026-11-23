@@ -1,0 +1,5 @@
+@import "../trip/index.wxss";
+.viewfinder { height: 62vh; width: 100%; }
+.camera { width: 100%; height: 100%; }
+.content-guide { position: absolute; top: 4%; left: 4%; right: 4%; height: 58%; border: 2px solid #ffffff; color: white; font-size: 14px; padding: 10px; box-sizing: border-box; }
+.watermark-guide { position: absolute; top: 68%; left: 4%; right: 4%; border-top: 2px dashed #ffffff; padding-top: 14px; color: white; font-size: 14px; text-align: center; }

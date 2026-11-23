@@ -1,0 +1,12 @@
+<view class="page">
+  <view class="heading">{{label}} · 请拍完整、拍清楚</view>
+  <view class="viewfinder">
+    <camera class="camera" device-position="back" flash="off" resolution="high" bindinitdone="init" binderror="cameraError">
+      <cover-view class="content-guide">重要内容请尽量放在此框内</cover-view>
+      <cover-view class="watermark-guide">建议留白区 · 水印样式待选定</cover-view>
+    </camera>
+  </view>
+  <view class="hint">辅助框不会出现在照片中。留白区是取景参考，最终水印位置以选定样式为准。</view>
+  <view wx:if="{{error}}" class="alert">{{error}}</view>
+  <button class="primary" bindtap="take" disabled="{{!ready || busy}}">{{busy ? '正在保存照片…' : '拍照并上传'}}</button>
+</view>

@@ -1,6 +1,6 @@
 // Durable outbox: save original + request metadata before any network request.
 // Clearing local files is allowed only after server READY or acknowledged removal.
-function createQueue({ platform, call, requestId, recordId }) {
+function createQueue({ platform, call, requestId, recordId, onProgress = () => {}, clock = Date.now }) {
   const key = `v1_photos_${recordId}`;
   let running = false;
   const list = () => JSON.parse(JSON.stringify(platform.getStorageSync(key) || []));
@@ -40,24 +40,44 @@ function createQueue({ platform, call, requestId, recordId }) {
     const draft = list().find(d => d.id === id);
     if (!draft) return;
     running = true;
+    const started = clock();
+    draft.timings = {};
     try {
+      onProgress({ stage: '正在准备上传', percent: 0 });
       await reserve(draft);
+      draft.timings.reserve_ms = clock() - started;
       if (!draft.file_id) {
+        const grantStart = clock();
         const grant = await call({ action: 'uploadTarget', record_id: recordId, photo_id: draft.photo_id });
+        draft.timings.grant_ms = clock() - grantStart;
         if (!grant.archived) {
+          const uploadStart = clock();
+          onProgress({ stage: '正在上传照片', percent: 0 });
           // wx.uploadFile returns an UploadTask, not a Promise. Wait for callback.
-          const uploaded = await new Promise((resolve, reject) => platform.uploadFile({
-            url: grant.target.url, filePath: draft.path, name: 'file',
-            formData: grant.target.form_data, success: resolve, fail: reject,
-          }));
+          const uploaded = await new Promise((resolve, reject) => {
+            const task = platform.uploadFile({
+              url: grant.target.url, filePath: draft.path, name: 'file',
+              formData: grant.target.form_data, success: resolve, fail: reject,
+            });
+            if (task && task.onProgressUpdate) task.onProgressUpdate(info =>
+              onProgress({ stage: '正在上传照片', percent: Math.max(0, Math.min(100, Number(info.progress) || 0)) }));
+          });
+          draft.timings.upload_ms = clock() - uploadStart;
           if (!Number.isFinite(uploaded.statusCode) || uploaded.statusCode < 200 || uploaded.statusCode >= 300) {
             throw new Error('上传授权可能已过期，请重试');
           }
           draft.file_id = grant.target.file_id; put(draft);
         }
       }
+      onProgress({ stage: '正在生成水印并归档', percent: null });
+      const processStart = clock();
       const data = await call({ action: 'processPhoto', record_id: recordId, photo_id: draft.photo_id, file_id: draft.file_id });
+      draft.timings.process_ms = clock() - processStart;
+      draft.timings.total_ms = clock() - started;
+      // Local timing only: never store upload policies, URLs or administrator credentials.
+      platform.setStorageSync(`v1_last_photo_timing_${recordId}`, { ...draft.timings, type: draft.type });
       draft.status = data.photo.status; draft.error = '';
+      onProgress({ stage: data.photo.status === 'ready' ? '照片已保存' : '照片仍待处理', percent: null });
       if (data.photo.status === 'ready') drop(draft);
       else { put(draft); }
       return data.photo;

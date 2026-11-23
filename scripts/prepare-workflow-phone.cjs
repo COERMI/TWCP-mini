@@ -6,4 +6,6 @@ if (!/^[a-f0-9]{64}$/.test(invite.invite) || !/^trip_[a-f0-9]{40}$/.test(invite.
 const phone = path.join(target, 'workflow-phone-project');
 fs.cpSync(path.resolve(__dirname, '../tools/workflow-probe'), phone, { recursive: true });
 fs.writeFileSync(path.join(phone, 'miniprogram/target.js'), `module.exports = ${JSON.stringify(invite)};\n`);
+const appPath = path.join(phone, 'miniprogram/app.js');
+fs.writeFileSync(appPath, fs.readFileSync(appPath, 'utf8').replace('App({', "App({\n  globalData: { testTarget: require('./target') },"));
 console.log('Prepared workflow phone project with the existing claimed test trip; no admin credentials included.');

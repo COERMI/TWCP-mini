@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="heading">发给司机</view>
+  <view class="hint">电脑后台建好本趟后，在这里选择车牌，发送微信卡片。</view>
+  <view wx:if="{{error}}" class="alert">{{error}}</view>
+  <view wx:if="{{!loggedIn}}" class="card">
+    <input placeholder="管理员账号" value="{{username}}" data-field="username" bindinput="field" />
+    <input placeholder="管理员密码" password value="{{password}}" data-field="password" bindinput="field" />
+    <button class="primary" bindtap="login" disabled="{{busy}}">管理员登录</button>
+  </view>
+  <block wx:else>
+    <input placeholder="搜索车牌或运输编号" value="{{keyword}}" data-field="keyword" bindinput="field" />
+    <button bindtap="search" disabled="{{busy}}">查找待发送运输</button>
+    <view wx:for="{{rows}}" wx:key="id" class="card">
+      <view class="title">{{item.plate_number}} · {{item.ship_date}}</view>
+      <view class="hint">{{item.description}} · {{item.record_no}}</view>
+      <button data-id="{{item.id}}" bindtap="select" disabled="{{busy}}">选择这趟</button>
+    </view>
+    <view wx:if="{{!rows.length && !busy}}" class="hint">没有待发送运输，请先在电脑后台建档。</view>
+    <button wx:if="{{hasMore}}" data-next="true" bindtap="search" disabled="{{busy}}">下一页</button>
+    <view wx:if="{{selected}}" class="card current-task">
+      <view class="title">{{selected.plate}} · {{selected.date}}</view>
+      <view class="hint">{{selected.description}}</view>
+      <button class="primary" open-type="share" disabled="{{busy}}">发给司机</button>
+      <view class="hint">在微信中选择联系人并确认发送；这里不会自动发消息。</view>
+    </view>
+    <button class="quiet" bindtap="logout" disabled="{{busy}}">退出管理员登录</button>
+  </block>
+</view>

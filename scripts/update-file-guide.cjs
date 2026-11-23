@@ -5,6 +5,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const scripts = {
+  'preview-watermark-styles.cjs':'生成两版水印的六张合成样例；只写本机证据，不部署、不读取真实司机照片',
   'admin-preview.cjs':'管理员核对本趟后调用微信工具生成独立测试二维码；会写私有工程并编译预览',
   'preview-admin.cjs':'启动本机总部网页和经过鉴权的云调用桥接；页面操作可以写测试数据',
   'preview-prototype.cjs':'启动本机业务原型；只提供本地演示页面',
@@ -27,6 +28,7 @@ const scripts = {
   'update-file-guide.cjs':'重新生成这份逐文件用途表；只修改说明文档',
 };
 const docs = {
+  '司机体验优化实施说明.md':'本轮三步拍照、开关门自动保存、微信卡片和两版水印说明，含真机待验项目',
   'QUICK_START_FOR_OWNER.md':'负责人日常操作说明；不懂代码先看这份',
   '当前进度与下一步行动.md':'最新进展和接下来要做什么；优先看顶部',
   '文件用途说明.md':'本文件，逐个说明文件作用及新版/旧版位置',
@@ -57,6 +59,8 @@ const docs = {
   'PROGRESS.md':'前期开发历史，当前进度请看IMPLEMENTATION_STATUS',
 };
 const tests = {
+  'driver-experience.test.cjs':'检查新司机交互、自动保存、分享选择和管理员令牌不进入卡片',
+  'watermark-candidates.test.cjs':'真实渲染两种候选水印，核对运单页脚版正文像素与缺失字段',
   'admin-preview.test.cjs':'检查测试二维码生成隔离、并发和JPEG/PNG识别',
   'admin-review-bridge.test.cjs':'检查本机总部桥接鉴权、来源、大小和登录次数限制',
   'admin-workflow-view.test.cjs':'检查总部照片分组、排序和移除记录显示',
@@ -122,6 +126,7 @@ function miniDescription(file) {
   const family = current ? '当前整趟手机联调' : file.startsWith('tools/invitation-probe/') ? '早期入口手机试件' :
     file.startsWith('tools/image-probe/') ? '早期图片手机试件' : '旧司机主包';
   const name = path.posix.basename(file), extension = path.posix.extname(file);
+  if (file.endsWith('/assets/share-card.png')) return '微信分享固定封面，只含公开操作提示，避免截图泄露管理员列表';
   if (name === 'project.config.json') return family+'的微信开发者工具项目配置；不包含私有邀请';
   if (name === 'app.js') return family+'的启动逻辑和云环境初始化';
   if (name === 'app.json') return family+'的页面清单和窗口设置';
@@ -140,6 +145,7 @@ function miniDescription(file) {
   })[name];
   let screen = file.includes('/components/plate-keyboard/') ? '车牌键盘组件' :
     file.includes('/pages/entry/') ? '车牌核对和本趟入口页面' : file.includes('/pages/trip/') ? '整趟拍照、开关门和完成页面' :
+    file.includes('/pages/capture/') ? '带有效内容取景框的相机页面' : file.includes('/pages/dispatch/') ? '管理员登录和发给司机页面' :
     file.includes('/pages/probe/') ? '图片试件操作页面' : file.includes('/pages/index/') ? '旧首页' :
     file.includes('/pages/record/') ? '旧拍照档案页面' : null;
   if (!screen) return null;
@@ -152,7 +158,7 @@ function describe(file) {
   if (name === '.gitignore') return 'Git上传排除规则：私人配置、依赖、日志和本机图片等不提交';
   if (file === '.gitattributes') return '统一代码换行规则，避免Windows与其他电脑产生无意义差异';
   if (file === 'cloudbaserc.json') return '历史部署清单，尚未覆盖新版；不要据此批量部署';
-  if (file === 'project.config.json') return '旧主包的微信项目配置；AppID公开，私人设置另存且不上传';
+  if (file === 'project.config.json') return '微信主项目配置；已指向新版司机页面，AppID公开，私人设置另存且不上传';
   if (name === 'package.json') return '该子项目的依赖名称、版本和可执行命令';
   if (name === 'package-lock.json') return '锁定该子项目实际依赖版本，由npm维护，不要手工修改';
   if (file.startsWith('scripts/')) return scripts[name];
@@ -164,7 +170,7 @@ function describe(file) {
   if (file.startsWith('cloudfunctions/imagePipelineProbe/')) {
     if (file.includes('/fonts/')) return name.endsWith('.ttc') ? '中文水印字体二进制；不要用文本编辑器修改' :
       name === 'README.txt' ? '字体上游作者、版权、许可和嵌入例外原文' : '字体上游许可原文，分发时保留';
-    return ({'index.js':'隔离图片试件入口，受试件授权保护','renderer.js':'新版复用的中文水印与运单扩展页脚渲染器','fixtures.js':'生成各尺寸和方向的合成测试图，不含真实运单'})[name];
+    return ({'index.js':'隔离图片试件入口，受试件授权保护','renderer.js':'新版复用的中文水印与运单扩展页脚渲染器','styled-watermark.js':'两版候选水印：照片内叠加与照片外信息栏，尚未替换云端现用样式','fixtures.js':'生成各尺寸和方向的合成测试图，不含真实运单'})[name];
   }
   if (file.startsWith('cloudfunctions/')) {
     const group = file.split('/')[1];

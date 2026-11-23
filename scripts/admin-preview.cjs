@@ -32,6 +32,9 @@ function createPreviewer({ root = privateRoot, run = ide } = {}) {
       await fs.cp(path.resolve(__dirname, '../tools/workflow-probe'), project, { recursive: true });
       await fs.writeFile(path.join(project, 'miniprogram/target.js'),
         `module.exports = ${JSON.stringify({ invite: invitation.invite, record_id: invitation.record.id })};\n`);
+      const appPath = path.join(project, 'miniprogram/app.js');
+      await fs.writeFile(appPath, (await fs.readFile(appPath, 'utf8'))
+        .replace('App({', "App({\n  globalData: { testTarget: require('./target') },"));
       const configPath = path.join(project, 'project.config.json');
       const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
       config.projectname = '运输影像-后台本趟入口测试';

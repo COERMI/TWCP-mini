@@ -140,4 +140,24 @@ test('只拍齐第一项时下一项解锁，第三项仍锁住；完成运输�
   const state = { phase: 'preparing', base_ready: { WAYBILL: 1 }, events: [], photos: [] };
   assert.deepEqual(view(state, []).base.map(b => b.locked), [false, false, true]);
   assert(view({ ...state, phase: 'completed' }, []).base.every(b => b.locked));
+  assert.equal(view(state, []).currentStep.type, 'CARGO_PHOTO');
+  assert.equal(view({ ...state, base_ready: { WAYBILL: 1, CARGO_PHOTO: 1, LOADED_COMPARTMENT: 1 } }, []).currentStep, null);
+});
+test('上传显示真实进度，归档阶段不伪造百分比；耗时记录不含授权和邀请', async () => {
+  const f = await fixture(), draft = await f.add(), progress = [];
+  const upload = f.platform.uploadFile;
+  f.platform.uploadFile = input => {
+    const task = upload(input);
+    task.onProgressUpdate = fn => fn({ progress: 42 });
+    return task;
+  };
+  let tick = 0;
+  const queue = createQueue({ ...f.options, clock: () => ++tick, onProgress: p => progress.push(p) });
+  await queue.send(draft.id);
+  assert(progress.some(p => p.percent === 42));
+  assert(progress.some(p => p.stage.includes('归档') && p.percent === null));
+  assert.equal(progress.at(-1).stage, '照片已保存');
+  const timing = f.platform.getStorageSync(`v1_last_photo_timing_${f.recordId}`);
+  assert(timing.total_ms > 0 && timing.process_ms > 0 && timing.upload_ms > 0);
+  assert.deepEqual(Object.keys(timing).sort(), ['grant_ms', 'process_ms', 'reserve_ms', 'total_ms', 'type', 'upload_ms']);
 });

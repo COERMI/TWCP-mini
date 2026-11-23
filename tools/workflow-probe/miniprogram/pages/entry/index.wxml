@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="tag">整趟流程联调 · 测试运输</view>
+  <view class="tag">本趟运输</view>
   <view class="title">{{claimed ? '已确认本趟运输' : '先确认本趟车牌'}}</view>
   <view wx:if="{{record}}" class="card">
     <view class="plate">{{record.plate_number}}</view>
@@ -20,9 +20,10 @@
     <view class="success">{{message}}</view>
     <button class="primary" bindtap="enter" disabled="{{busy}}">进入本趟运输，开始拍照</button>
     <view wx:if="{{readVerified}}" class="success">本趟读取验证通过</view>
-    <view class="hint">退出后重新扫码，仍应显示本趟运输，无需再次确认车牌。</view>
+    <view class="hint">再次打开同一张卡片，继续本趟运输。</view>
   </view>
   <view wx:if="{{error}}" class="alert">{{error}}</view>
   <button wx:if="{{!claimed}}" bindtap="load" disabled="{{busy}}">{{busy ? '正在读取…' : '刷新本趟入口'}}</button>
-  <view class="hint">仅用于测试。运输前三项按顺序拍齐，之后每次开门、关门都拍照，全部卸货后再完成运输。</view>
+  <view class="hint">运输前三项按顺序拍齐，之后每次开门、关门都拍照，全部卸货后再完成运输。</view>
+  <navigator class="hint" url="/pages/dispatch/index">工作人员入口</navigator>
 </view>

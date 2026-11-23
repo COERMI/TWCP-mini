@@ -1,0 +1,65 @@
+{
+  "synthetic": true,
+  "samples": [
+    {
+      "name": "landscape-overlay.png",
+      "requestedStyle": "overlay",
+      "actualLayout": "overlay",
+      "width": 1600,
+      "height": 1000,
+      "contentHeight": 1000,
+      "watermarkHeight": 331,
+      "bytes": 93707
+    },
+    {
+      "name": "landscape-footer.png",
+      "requestedStyle": "footer",
+      "actualLayout": "footer",
+      "width": 1600,
+      "height": 1331,
+      "contentHeight": 1000,
+      "watermarkHeight": 331,
+      "bytes": 101969
+    },
+    {
+      "name": "portrait-overlay.png",
+      "requestedStyle": "overlay",
+      "actualLayout": "overlay",
+      "width": 1000,
+      "height": 1600,
+      "contentHeight": 1600,
+      "watermarkHeight": 202,
+      "bytes": 71898
+    },
+    {
+      "name": "portrait-footer.png",
+      "requestedStyle": "footer",
+      "actualLayout": "footer",
+      "width": 1000,
+      "height": 1802,
+      "contentHeight": 1600,
+      "watermarkHeight": 202,
+      "bytes": 80539
+    },
+    {
+      "name": "waybill-overlay.png",
+      "requestedStyle": "overlay",
+      "actualLayout": "overlay",
+      "width": 1400,
+      "height": 1900,
+      "contentHeight": 1900,
+      "watermarkHeight": 286,
+      "bytes": 163919
+    },
+    {
+      "name": "waybill-footer.png",
+      "requestedStyle": "footer",
+      "actualLayout": "footer",
+      "width": 1400,
+      "height": 2186,
+      "contentHeight": 1900,
+      "watermarkHeight": 286,
+      "bytes": 174397
+    }
+  ]
+}

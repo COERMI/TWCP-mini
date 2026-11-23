@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-23",
+  "timezone": "Asia/Shanghai",
+  "idePreviewCompiled": true,
+  "mainPackage": "tools/workflow-probe/miniprogram/",
+  "localTests": 116,
+  "physicalCameraVerified": false,
+  "physicalChatShareVerified": false,
+  "weatherLocationIntegrated": false,
+  "watermarkCandidateDeployed": false,
+  "cloudDeploymentChanged": false,
+  "formalRelease": false
+}

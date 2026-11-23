@@ -3,10 +3,12 @@ const { createQueue } = require('../../lib/photo-queue');
 const { view, LABELS } = require('../../lib/view');
 const modal = options => wx.showModal(options);
 Page({
-  data: { record: null, state: null, busy: false, error: '', notice: '', note: '', pending: [], base: [], doors: [], issues: [] },
+  data: { record: null, state: null, busy: false, error: '', notice: '', note: '', pending: [], base: [], doors: [], issues: [],
+    showRecords: false, showIssue: false, progress: null },
   onLoad(options) {
     this.recordId = options.record;
-    this.queue = createQueue({ platform: wx, call: api.call, requestId: api.requestId, recordId: this.recordId });
+    this.queue = createQueue({ platform: wx, call: api.call, requestId: api.requestId, recordId: this.recordId,
+      onProgress: progress => this.setData({ progress }) });
     const cache = wx.getStorageSync('v1_snapshot_' + this.recordId);
     if (cache) {
       this.current = cache.state;
@@ -41,6 +43,8 @@ Page({
       this.setData({ busy: false });
     }
   },
+  toggleRecords() { this.setData({ showRecords: !this.data.showRecords }); },
+  toggleIssue() { this.setData({ showIssue: !this.data.showIssue }); },
   async shoot(event) {
     const { type, event: eventId } = event.currentTarget.dataset;
     if (this.data.busy || this.data.done) return;
@@ -57,22 +61,32 @@ Page({
       }
       let captured;
       try {
-        captured = await wx.chooseMedia({ count: 1, mediaType: ['image'], sourceType: ['camera'], sizeType: ['original'] });
+        captured = await new Promise((resolve, reject) => wx.navigateTo({
+          url: '/pages/capture/index?label=' + encodeURIComponent(LABELS[type]),
+          events: {
+            captured: file => resolve({ tempFiles: [file] }),
+            cancelled: () => resolve(null),
+          },
+          fail: reject,
+        }));
       } catch (error) {
         if (String(error.errMsg).includes('cancel')) return;
         throw new Error('相机未打开，请检查相机权限后再拍');
       }
-      const draft = await this.queue.add(captured.tempFiles[0], group, type, Date.now());
+      if (!captured) return;
+      const draft = await this.queue.add(captured.tempFiles[0], group, type, captured.tempFiles[0].captureTime || Date.now());
       this.setData({ notice: '照片已保存在手机，正在上传归档…' });
       const photo = await this.queue.send(draft.id);
       this.setData({ notice: photo && photo.status === 'ready' ? `${LABELS[type]}已归档` : '照片仍在处理，可稍后重试' });
       await this.reload();
+      if (type === 'DOOR_CLOSE' && photo && photo.status === 'ready') await this.saveReadyDoor();
     });
   },
   async retry(event) {
     return this.run(async () => {
       await this.queue.send(event.currentTarget.dataset.id);
       await this.reload();
+      await this.saveReadyDoor();
     });
   },
   async retryRemote(event) {
@@ -83,6 +97,7 @@ Page({
       else if (photo.original_bytes) await api.call({ action: 'processPhoto', record_id: this.recordId, photo_id: photo.id });
       else throw new Error('原图尚未归档，请在原拍摄手机上补传；若原文件已丢失，请移除这张待传记录后重拍');
       await this.reload();
+      await this.saveReadyDoor();
     });
   },
   async reason(title) {
@@ -123,13 +138,25 @@ Page({
   async depart() {
     return this.run(async () => {
       if (this.queue.list().length) throw new Error('手机还有照片待上传，请先处理');
-      const answer = await modal({ title: '提交运输前三项照片', content: '确认货运单、货物码放、装好的车厢都已拍齐。提交后，每次开关门还要继续拍照。', confirmText: '确认提交' });
-      if (!answer.confirm) return;
       await api.mutate(this.recordId, 'submitBase'); await this.reload();
     });
   },
   async startDoor() {
-    return this.run(async () => { await api.mutate(this.recordId, 'startEvent', { kind: 'door' }); await this.reload(); });
+    if (this.data.busy) return;
+    let id;
+    await this.run(async () => {
+      const data = await api.mutate(this.recordId, 'startEvent', { kind: 'door' });
+      id = data.event.id;
+      await this.reload();
+    });
+    if (id) await this.shoot({ currentTarget: { dataset: { type: 'DOOR_OPEN', event: id } } });
+  },
+  async saveReadyDoor() {
+    const door = this.data.activeDoor;
+    if (!door || !door.canFinish || this.queue.list().some(d => d.event_id === door.id)) return;
+    await api.mutate(this.recordId, 'finishDoor', { event_id: door.id });
+    await this.reload();
+    this.setData({ notice: '本次开关门已保存，下次开门时继续拍照。' });
   },
   async finishDoor(event) {
     return this.run(async () => {

@@ -21,7 +21,8 @@ function view(state, drafts) {
       ready: state.base_ready[type] || 0, photos: event ? event.photos : [],
       locked: done || !BASE.slice(0, index).every(t => state.base_ready[t] > 0) };
   });
-  return { state, done, base, pending, doors: events.filter(e => e.kind === 'door'),
+  const currentStep = base.find(b => !b.ready) || null;
+  return { state, done, base, currentStep, pending, doors: events.filter(e => e.kind === 'door'),
     issues: events.filter(e => e.kind === 'issue'), allBaseReady: BASE.every(t => state.base_ready[t] > 0),
     activeDoor: events.find(e => e.id === state.active_door) || null,
     canComplete: !done && state.phase === 'transporting' && !state.active_door &&
