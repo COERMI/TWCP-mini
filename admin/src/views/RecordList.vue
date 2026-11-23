@@ -20,12 +20,6 @@
         <el-form-item label="创建日期（北京时间）">
           <el-date-picker v-model="dateRange" type="daterange" value-format="YYYY-MM-DD" start-placeholder="开始日期" end-placeholder="结束日期" style="width:270px" />
         </el-form-item>
-        <el-form-item label="排序">
-          <el-select v-model="query.sort" style="width:180px" @change="search">
-            <el-option label="创建时间最新优先" value="created_desc" />
-            <el-option v-if="query.source === 'v1'" label="最近更新优先" value="updated_desc" />
-          </el-select>
-        </el-form-item>
         <el-form-item><el-button type="primary" @click="search">查询</el-button><el-button @click="reset">重置</el-button></el-form-item>
       </el-form>
     </el-card>
@@ -38,7 +32,26 @@
         <el-table-column prop="plate_number" label="车牌" min-width="115" />
         <el-table-column label="状态" min-width="150"><template #default="{row}"><el-tag :type="row.invite_revoked_at ? 'warning' : row.phase === 'completed' ? 'success' : 'info'">{{ row.invite_revoked_at ? '入口已停用' : PHASES[row.phase] || row.phase }}</el-tag></template></el-table-column>
         <el-table-column label="发货日期 / 方向" min-width="210"><template #default="{row}"><div>{{ row.ship_date || '—' }}</div><span class="muted">{{ row.description || '—' }}</span></template></el-table-column>
-        <el-table-column label="最近更新（北京时间）" min-width="180"><template #default="{row}">{{ formatDateTime(row.updated_at || row.created_at) }}</template></el-table-column>
+        <el-table-column label="创建时间（北京时间）" min-width="205">
+          <template #header>
+            <span class="time-heading">创建时间
+              <button class="sort-button" :class="{ active: query.sort === 'created_desc' }"
+                :aria-pressed="query.sort === 'created_desc'" aria-label="按创建时间从新到旧排序"
+                title="按创建时间从新到旧排序" :disabled="loading" @click="sortBy('created_desc')">↓</button>
+            </span><span class="timezone">北京时间</span>
+          </template>
+          <template #default="{row}">{{ formatDateTime(row.created_at) }}</template>
+        </el-table-column>
+        <el-table-column label="最近更新时间（北京时间）" min-width="205">
+          <template #header>
+            <span class="time-heading">最近更新时间
+              <button v-if="query.source === 'v1'" class="sort-button" :class="{ active: query.sort === 'updated_desc' }"
+                :aria-pressed="query.sort === 'updated_desc'" aria-label="按最近更新时间从新到旧排序"
+                title="按最近更新时间从新到旧排序" :disabled="loading" @click="sortBy('updated_desc')">↓</button>
+            </span><span class="timezone">北京时间</span>
+          </template>
+          <template #default="{row}">{{ formatDateTime(row.updated_at || row.created_at) }}</template>
+        </el-table-column>
         <el-table-column label="开关门" min-width="90"><template #default="{row}">{{ row.source === 'v1' ? row.closed_door_count + ' 组' : '按旧分组' }}</template></el-table-column>
         <el-table-column prop="photo_count" label="有效照片" min-width="90" />
         <el-table-column label="操作" width="150" fixed="right"><template #default="{row}"><el-button type="primary" link @click="detail(row)">查看本趟</el-button><el-button v-if="row.source === 'v1' && row.phase === 'awaiting_plate' && !row.invite_revoked_at" type="primary" link @click="invitation(row)">本趟入口</el-button></template></el-table-column>
@@ -82,6 +95,7 @@ async function load() {
   finally { if (current === generation) loading.value = false; }
 }
 function search() { query.page = 1; load(); }
+function sortBy(sort) { query.sort = sort; search(); }
 function changeSource() { query.phase = ''; query.sort = 'created_desc'; search(); }
 function reset() { query.keyword = ''; query.phase = ''; dateRange.value = null; search(); }
 function detail(row) { router.push({ path: '/record/' + encodeURIComponent(row.id), query: { source: row.source, back: route.fullPath } }); }
@@ -96,5 +110,6 @@ function logout() { clearToken(); router.replace('/login'); }
 onMounted(load);
 </script>
 <style scoped>
+.time-heading{display:inline-flex;align-items:center;gap:6px}.timezone{display:block;font-size:12px;font-weight:400;color:#758378}.sort-button{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;padding:0;border:1px solid #c8d3cb;border-radius:5px;background:#fff;color:#66776d;font-size:17px;cursor:pointer}.sort-button.active{background:#176047;border-color:#176047;color:#fff}.sort-button:focus-visible{outline:2px solid #176047;outline-offset:2px}.sort-button:disabled{cursor:wait;opacity:.6}
 .page{padding:32px;max-width:1600px;margin:auto}.heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;gap:16px;flex-wrap:wrap}.heading-actions{display:flex;gap:12px}.eyebrow{color:#65776c;font-size:14px}h1{font-size:27px;margin:10px 0;color:#213e30}h2{font-size:18px;margin:0}.filter-card{margin-bottom:20px}.results{margin-top:20px}.results-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px;color:#67786c}.muted{font-size:12px;color:#758378}.pagination{display:flex;justify-content:flex-end;margin-top:24px}.el-alert{margin-top:16px}@media(max-width:700px){.page{padding:16px}h1{font-size:21px}.results-head{display:block}.results-head span{display:block;margin-top:12px}.pagination{overflow:auto;justify-content:flex-start}}
 </style>
