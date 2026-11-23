@@ -66,6 +66,10 @@ function makeAdmin({ store, config, clock, collections: C, media }) {
   async function adminList(input) {
     authorize(input);
     const source = sourceOf(input), keyword = A.text(input.keyword, 81), phase = input.phase || '';
+    const sort = input.sort || 'created_desc';
+    if (!['created_desc', 'updated_desc'].includes(sort) || (source === 'legacy' && sort === 'updated_desc')) {
+      A.fail('INVALID_SORT', '请选择有效的排序方式');
+    }
     const phases = source === 'v1' ? ['awaiting_plate', 'preparing', 'transporting', 'completed'] : ['legacy_active', 'legacy_submitted'];
     if (keyword.length > 80 || (phase && !phases.includes(phase))) A.fail('INVALID_FILTER', '查询条件不正确');
     const from = dateBoundary(input.date_from), lastDay = dateBoundary(input.date_to);
@@ -75,8 +79,8 @@ function makeAdmin({ store, config, clock, collections: C, media }) {
     if (!Number.isSafeInteger(page) || page < 1 || page > 1000 ||
         !Number.isSafeInteger(pageSize) || pageSize < 1 || pageSize > 100) A.fail('INVALID_PAGE', '分页参数不正确');
     const result = await store.searchRecords(source === 'v1' ? C.records : LEGACY.records,
-      { source, keyword, phase, from, to, page, pageSize });
-    return { source, list: result.list.map(r => recordView(r, source)), total: result.total, page, pageSize };
+      { source, keyword, phase, from, to, page, pageSize, sort });
+    return { source, list: result.list.map(r => recordView(r, source)), total: result.total, page, pageSize, sort };
   }
   async function adminWorkflow(input) {
     authorize(input);

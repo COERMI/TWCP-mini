@@ -8,6 +8,24 @@ function token(extra = {}) {
   return payload + '.' + crypto.createHmac('sha256', config.adminSecret).update(payload).digest('base64url');
 }
 const admin = (h, action, input = {}) => h.ok({ action, token: token(), ...input });
+test('最近更新排序覆盖全部记录再分页，相同更新时间按内部编号稳定排序；默认仍按创建时间', async () => {
+  const h = setup();
+  for (const [i, updated] of [NOW + 300, NOW + 200, NOW + 300].entries()) {
+    const id = `trip_${String(i + 1).repeat(40)}`;
+    await h.store.transaction(tx => tx.set(COLLECTIONS.records, id, {
+      _id: id, record_no: `SORT${i}`, plate_number: '粤B12345', phase: 'preparing',
+      created_at: NOW + i, updated_at: updated,
+    }));
+  }
+  assert.deepEqual((await admin(h, 'adminList')).list.map(r => r.record_no), ['SORT2', 'SORT1', 'SORT0']);
+  const first = await admin(h, 'adminList', { sort: 'updated_desc', pageSize: 2 });
+  const second = await admin(h, 'adminList', { sort: 'updated_desc', pageSize: 2, page: 2 });
+  assert.deepEqual(first.list.map(r => r.record_no), ['SORT2', 'SORT0']);
+  assert.deepEqual(second.list.map(r => r.record_no), ['SORT1']);
+  for (const sort of ['updated_at', 'random']) {
+    assert.equal((await h.call({ action: 'adminList', token: token(), sort })).code, 'INVALID_SORT');
+  }
+});
 test('三个总部入口均需有效管理员令牌，司机身份、过期、缺有效期和错误主体都拒绝', async () => {
   const h = setup(), id = await h.trip();
   for (const action of ['adminList', 'adminWorkflow', 'adminPhotoLinks']) {

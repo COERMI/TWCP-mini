@@ -12,7 +12,7 @@ const COLLECTIONS = Object.freeze({
   events: 'transport_v1_events',
   photos: 'transport_v1_photos',
 });
-const VERSION = 'transport-v1-admin-2';
+const VERSION = 'transport-v1-admin-3';
 const DAY = 24 * 3600000;
 const PLATE = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼][A-Z][A-HJ-NP-Z0-9挂学警港澳]{5,6}$/;
 function publicRecord(record) {

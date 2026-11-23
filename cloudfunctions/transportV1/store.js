@@ -24,7 +24,8 @@ function createStore(db) {
       let query = db.collection(collection);
       if (filters.length) query = query.where(filters.length === 1 ? filters[0] : command.and(filters));
       const [counted, records] = await Promise.all([
-        query.count(), query.orderBy('created_at', 'desc').orderBy('_id', 'desc').skip((page - 1) * pageSize).limit(pageSize).get(),
+        query.count(), query.orderBy(options.sort === 'updated_desc' ? 'updated_at' : 'created_at', 'desc')
+          .orderBy('_id', 'desc').skip((page - 1) * pageSize).limit(pageSize).get(),
       ]);
       return { total: counted.total, list: records.data };
     },

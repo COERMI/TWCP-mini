@@ -23,7 +23,10 @@ function setup() {
         .filter(r => (!o.keyword || [r.record_no, r.plate_number].some(v => v.toLowerCase().includes(o.keyword.toLowerCase()))) &&
           (!o.phase || (o.source === 'v1' ? r.phase === o.phase : r.status === (o.phase === 'legacy_submitted' ? 'submitted' : 'active'))) &&
           (o.from === null || new Date(r.created_at).getTime() >= o.from) && (o.to === null || new Date(r.created_at).getTime() < o.to))
-        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at) || b._id.localeCompare(a._id));
+          .sort((a, b) => {
+            const field = o.sort === 'updated_desc' ? 'updated_at' : 'created_at';
+            return new Date(b[field] || 0) - new Date(a[field] || 0) || b._id.localeCompare(a._id);
+          });
       return { total: rows.length, list: rows.slice((o.page - 1) * o.pageSize, o.page * o.pageSize) };
     },
     async transaction(callback) {

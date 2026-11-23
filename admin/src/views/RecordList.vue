@@ -20,6 +20,12 @@
         <el-form-item label="创建日期（北京时间）">
           <el-date-picker v-model="dateRange" type="daterange" value-format="YYYY-MM-DD" start-placeholder="开始日期" end-placeholder="结束日期" style="width:270px" />
         </el-form-item>
+        <el-form-item label="排序">
+          <el-select v-model="query.sort" style="width:180px" @change="search">
+            <el-option label="创建时间最新优先" value="created_desc" />
+            <el-option v-if="query.source === 'v1'" label="最近更新优先" value="updated_desc" />
+          </el-select>
+        </el-form-item>
         <el-form-item><el-button type="primary" @click="search">查询</el-button><el-button @click="reset">重置</el-button></el-form-item>
       </el-form>
     </el-card>
@@ -52,7 +58,9 @@ const dispatch = ref(null), localReview = window.__APP_CONFIG__?.transport === '
 const route = useRoute(), router = useRouter();
 const positive = (v, fallback, max) => Number.isInteger(Number(v)) && Number(v) > 0 && Number(v) <= max ? Number(v) : fallback;
 const query = reactive({ source: route.query.source === 'legacy' ? 'legacy' : 'v1', keyword: String(route.query.keyword || ''),
-  phase: String(route.query.phase || ''), page: positive(route.query.page, 1, 1000), pageSize: positive(route.query.pageSize, 20, 100) });
+  phase: String(route.query.phase || ''),
+  sort: route.query.source !== 'legacy' && route.query.sort === 'updated_desc' ? 'updated_desc' : 'created_desc',
+  page: positive(route.query.page, 1, 1000), pageSize: positive(route.query.pageSize, 20, 100) });
 const dateRange = ref(route.query.date_from && route.query.date_to ? [route.query.date_from, route.query.date_to] : null);
 const availablePhases = computed(() => query.source === 'legacy' ? ['legacy_active','legacy_submitted'] : ['awaiting_plate','preparing','transporting','completed']);
 const list = ref([]), total = ref(0), loading = ref(false), error = ref('');
@@ -74,7 +82,7 @@ async function load() {
   finally { if (current === generation) loading.value = false; }
 }
 function search() { query.page = 1; load(); }
-function changeSource() { query.phase = ''; search(); }
+function changeSource() { query.phase = ''; query.sort = 'created_desc'; search(); }
 function reset() { query.keyword = ''; query.phase = ''; dateRange.value = null; search(); }
 function detail(row) { router.push({ path: '/record/' + encodeURIComponent(row.id), query: { source: row.source, back: route.fullPath } }); }
 function created(record) {
